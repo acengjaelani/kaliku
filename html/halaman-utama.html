@@ -400,7 +400,7 @@
     </div>
   </div>
 
-  <!-- Modal Konfirmasi Keluar Aplikasi -->
+  <!-- Modal Konfirmasi Keluar Aplikasi
   <div class="modal fade" id="modalAppExit" tabindex="-1" aria-labelledby="modalAppExitLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4 shadow-lg">
@@ -417,7 +417,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Footer -->
   <footer class="bg-warning text-center text-dark py-3 mt-5 shadow-sm">
@@ -449,29 +449,29 @@
       window.location.href = "../login.html";
     }
 
-    function confirmLogout() {
-      const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
-      modal.show();
-    }
+    // function confirmLogout() {
+    //   const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
+    //   modal.show();
+    // }
 
-    // Pastikan pushState dipanggil sekali setelah halaman siap
-    window.addEventListener("load", () => {
-      history.pushState(null, null, location.href);
-    });
+    // // Pastikan pushState dipanggil sekali setelah halaman siap
+    // window.addEventListener("load", () => {
+    //   history.pushState(null, null, location.href);
+    // });
 
-    // Saat popstate (back button) terjadi, tampilkan modal AppExit
-    window.addEventListener("popstate", (e) => {
-      e.preventDefault();
-      const modal = new bootstrap.Modal(document.getElementById("modalAppExit"));
-      modal.show();
-      // Push state lagi biar halaman tidak benar-benar mundur
-      history.pushState(null, null, location.href);
-    });
+    // // Saat popstate (back button) terjadi, tampilkan modal AppExit
+    // window.addEventListener("popstate", (e) => {
+    //   e.preventDefault();
+    //   const modal = new bootstrap.Modal(document.getElementById("modalAppExit"));
+    //   modal.show();
+    //   // Push state lagi biar halaman tidak benar-benar mundur
+    //   history.pushState(null, null, location.href);
+    // });
 
-    // Jika user konfirmasi keluar, panggil window.close()
-    document.getElementById("confirmAppExit").addEventListener("click", () => {
-      window.close();
-    });
+    // // Jika user konfirmasi keluar, panggil window.close()
+    // document.getElementById("confirmAppExit").addEventListener("click", () => {
+    //   window.close();
+    // });
 
 
     function playKlikSound() {
