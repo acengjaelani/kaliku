@@ -350,48 +350,67 @@
   </div>
 
   <!-- Modal Skor Terbaik -->
-<div class="modal fade" id="modalSkorTerbaik" tabindex="-1" aria-labelledby="modalSkorTerbaikLabel" role="dialog"
-  aria-modal="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content shadow rounded-4">
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title d-flex align-items-center gap-2" id="modalSkorTerbaikLabel">
-          <span class="material-icons" style="font-size:1.7rem;">bar_chart</span>
-          Skor Terbaik per Level
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-      </div>
-      <div class="modal-body">
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>
-              <span class="material-icons" style="color:#397502; vertical-align:middle;">eco</span>
-              <b>Level Mudah</b>
-            </span>
-            <span id="skorLevelMudah" class="badge bg-primary rounded-pill">0</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>
-              <span class="material-icons" style="color:#bc7503; vertical-align:middle;">star_half</span>
-              <b>Level Sedang</b>
-            </span>
-            <span id="skorLevelSedang" class="badge bg-warning text-dark rounded-pill">0</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>
-              <span class="material-icons" style="color:#941818; vertical-align:middle;">whatshot</span>
-              <b>Level Sulit</b>
-            </span>
-            <span id="skorLevelSulit" class="badge bg-danger rounded-pill">0</span>
-          </li>
-        </ul>
-      </div>
-      <div class="modal-footer justify-content-center">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+  <div class="modal fade" id="modalSkorTerbaik" tabindex="-1" aria-labelledby="modalSkorTerbaikLabel" role="dialog"
+    aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow rounded-4">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title d-flex align-items-center gap-2" id="modalSkorTerbaikLabel">
+            <span class="material-icons" style="font-size:1.7rem;">bar_chart</span>
+            Skor Terbaik per Level
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>
+                <span class="material-icons" style="color:#397502; vertical-align:middle;">eco</span>
+                <b>Level Mudah</b>
+              </span>
+              <span id="skorLevelMudah" class="badge bg-primary rounded-pill">0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>
+                <span class="material-icons" style="color:#bc7503; vertical-align:middle;">star_half</span>
+                <b>Level Sedang</b>
+              </span>
+              <span id="skorLevelSedang" class="badge bg-warning text-dark rounded-pill">0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>
+                <span class="material-icons" style="color:#941818; vertical-align:middle;">whatshot</span>
+                <b>Level Sulit</b>
+              </span>
+              <span id="skorLevelSulit" class="badge bg-danger rounded-pill">0</span>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal Konfirmasi Keluar Aplikasi -->
+  <div class="modal fade" id="modalAppExit" tabindex="-1" aria-labelledby="modalAppExitLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 shadow-lg">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalAppExitLabel">Keluar Aplikasi</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Apakah Anda yakin ingin keluar dari aplikasi?</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-danger" id="confirmAppExit">Ya, Keluar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-warning text-center text-dark py-3 mt-5 shadow-sm">
@@ -427,6 +446,26 @@
       const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
       modal.show();
     }
+
+    // Pastikan pushState dipanggil sekali setelah halaman siap
+    window.addEventListener("load", () => {
+      history.pushState(null, null, location.href);
+    });
+
+    // Saat popstate (back button) terjadi, tampilkan modal AppExit
+    window.addEventListener("popstate", (e) => {
+      e.preventDefault();
+      const modal = new bootstrap.Modal(document.getElementById("modalAppExit"));
+      modal.show();
+      // Push state lagi biar halaman tidak benar-benar mundur
+      history.pushState(null, null, location.href);
+    });
+
+    // Jika user konfirmasi keluar, panggil window.close()
+    document.getElementById("confirmAppExit").addEventListener("click", () => {
+      window.close();
+    });
+
 
     function playKlikSound() {
       const klikSound = document.getElementById("klikSound");

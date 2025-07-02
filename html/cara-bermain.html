@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cara Bermain | Game Edukasi Perkalian</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link rel="icon" href="/asset/image/favicon_game.png" type="image/png"/>
+  <meta name="theme-color" content="#fff8c2"/>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(120deg,#fff8c2 40%,#ffe082 100%);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+    }
+    .card-cara {
+      background: #fff;
+      border-radius: 22px;
+      max-width: 680px;
+      width: 95vw;
+      margin: 55px auto 40px auto;
+      box-shadow: 0 8px 32px rgba(255,193,7,0.14), 0 2px 8px rgba(0,0,0,0.09);
+      padding: 38px 25px 32px 25px;
+      border: 2px solid #ffe08250;
+      animation: fadein .7s;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(25px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .judul {
+      font-size: 2.07rem;
+      font-weight: 700;
+      color: #e99500;
+      margin-bottom: 11px;
+      line-height: 1.23;
+      letter-spacing: .3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+    .judul .material-icons { font-size: 2.2rem; color: #ffc107;}
+    .subjudul {
+      font-size: 1.09rem; font-weight: 500; color: #6e3012;
+      margin-bottom: 16px; text-align: center;
+    }
+    .section-title {
+      color: #6e3012; font-weight: 600; font-size: 1.09rem;
+      margin-top: 28px; margin-bottom: 10px;
+      border-left: 5px solid #ffe082;
+      padding-left: 13px; letter-spacing: .18px;
+      background: linear-gradient(92deg,#fffbe7 80%,#ffecb3 100%);
+      border-radius: 0 8px 8px 0;
+      word-break: break-word;
+    }
+    .step-list {
+      list-style: none; padding: 0; margin-bottom: 22px;
+    }
+    .step-list li {
+      display: flex; align-items: flex-start; gap: 13px;
+      font-size: 1.08em; margin-bottom: 14px; line-height: 1.7;
+      word-break: break-word;
+    }
+    .step-list .material-icons { color: #ffb300; font-size: 23px; min-width: 23px;}
+    .tips-box {
+      background: linear-gradient(95deg,#ffecb3 70%,#fffbe7 100%);
+      border-radius: 12px; color: #6e3012;
+      font-size: 1.03em; padding: 13px 17px 13px 18px;
+      margin-bottom: 20px; border: 1.7px solid #ffe082; font-weight: 500;
+      word-break: break-word;
+    }
+    .table-score th, .table-score td {
+      background: #fffde8 !important; border: none; font-size: 1em;
+      padding: 8px 12px; color: #5b3d1b; vertical-align: middle;
+      word-break: break-word;
+    }
+    .table-score th {
+      color: #e99500; border-bottom: 2px solid #ffe082; width: 85px;
+      font-weight: 700; font-size: 1em; min-width: 60px;
+    }
+    .table-score .material-icons { color: #ff9800; font-size: 21px; margin-right: 2px; vertical-align: middle;}
+    .btn-home {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 999;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 19px;
+      background: #ffc107;
+      color: #744409;
+      box-shadow: 0 5px 15px rgba(255,193,7,.19);
+      padding: 8px 15px 8px 12px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background .18s, box-shadow .16s;
+    }
+    .btn-home:hover {
+      background: #ffd54f; color: #b36b1a; box-shadow: 0 7px 28px rgba(255,193,7,.20);
+    }
+    @media (max-width: 720px) {
+      .card-cara {
+        max-width: 100vw;
+        width: 99vw;
+        padding: 13vw 3vw 5vw 3vw;
+        margin: 14vw auto 18vw auto;
+      }
+      .judul { font-size: 1.13rem;}
+      .section-title { font-size: 1.0rem;}
+      .btn-home {
+        font-size: 15px;
+        top: 8px; left: 8px;
+        padding: 5px 10px 5px 9px;
+      }
+      .table-score th, .table-score td {
+        font-size: .96em;
+        padding: 7px 5px;
+      }
+      .table-responsive { overflow-x: auto; }
+    }
+    @media (max-width: 390px) {
+      .card-cara {
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+    }
+  </style>
+</head>
+<body>
+<a href="halaman-utama.html" class="btn-home" title="Kembali ke Beranda">
+  <span class="material-icons">home</span>
+</a>
+<div class="card-cara">
+  <div class="judul">
+    <span class="material-icons align-middle">psychology</span>
+    Cara Bermain
+  </div>
+  <div class="subjudul mb-3">
+    Berikut adalah petunjuk singkat agar kamu bisa bermain dan meraih skor terbaik di Game Edukasi Perkalian.
+  </div>
+
+  <div class="section-title">Langkah-Langkah Bermain</div>
+  <ul class="step-list">
+    <li><span class="material-icons">sports_esports</span> Pilih pada Mainkan Gamepada halaman utama.</li>
+    <li><span class="material-icons">category</span> Pilih level: Mudah, Sedang, Sulit, atau Latihan.</li>
+    <li><span class="material-icons">info</span> Baca petunjuk singkat yang muncul sebelum memulai setiap level.</li>
+    <li><span class="material-icons">mouse</span> Jawab soal dengan drag & drop ke kotak jawaban, atau pilih jawaban pada mode pilihan ganda.</li>
+    <li><span class="material-icons">timer</span> Setiap soal punya batas waktu, cek timer di layar.</li>
+    <li><span class="material-icons">favorite</span> Jika jawaban salah atau waktu habis, nyawa akan berkurang.</li>
+    <li><span class="material-icons">help</span> Gunakan fitur Bantuan (sekali tiap soal) jika perlu.</li>
+    <li><span class="material-icons">bar_chart</span> Skor dan sisa nyawa selalu tampil di layar.</li>
+    <li><span class="material-icons">emoji_events</span> Setelah selesai, lihat hasil skor dan skor terbaik kamu.</li>
+  </ul>
+
+  <div class="section-title">Sistem Skor & Nyawa</div>
+  <div class="table-responsive mb-2">
+    <table class="table table-score table-sm">
+      <tbody>
+        <tr>
+          <th><span class="material-icons">eco</span> Mudah</th>
+          <td>1 digit × 1 digit<br>Skor +1 tiap benar, waktu 10 detik, salah/telat: -1 nyawa</td>
+        </tr>
+        <tr>
+          <th><span class="material-icons">star_half</span> Sedang</th>
+          <td>2 digit × 1 digit<br>Skor +2 tiap benar, waktu 12 detik, salah/telat: -1 nyawa, -1 poin</td>
+        </tr>
+        <tr>
+          <th><span class="material-icons">whatshot</span> Sulit</th>
+          <td>2 digit × 2 digit<br>Skor +5 tiap benar, waktu 15 detik, salah/telat: -1 nyawa, -2 poin</td>
+        </tr>
+        <tr>
+          <th><span class="material-icons">school</span> Latihan</th>
+          <td>Soal bebas, tanpa skor atau nyawa (untuk latihan mandiri).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Fitur Bantuan</div>
+  <div class="tips-box mb-3">
+    <ul style="padding-left:20px; margin:0;">
+      <li><span class="material-icons" style="font-size:1em;color:#039be5;vertical-align:middle;">add_alarm</span>
+        <b>Tambah Waktu:</b> Menambah 10 detik pada waktu menjawab.</li>
+      <li><span class="material-icons" style="font-size:1em;color:#4caf50;vertical-align:middle;">menu_book</span>
+        <b>Lihat Cara Hitung:</b> Menampilkan langkah penyelesaian soal.</li>
+      <li>Setiap fitur bantuan hanya dapat digunakan satu kali pada setiap soal.</li>
+    </ul>
+  </div>
+
+  <div class="section-title">Tips Meraih Skor Tinggi</div>
+  <div class="tips-box">
+    <ul style="padding-left:20px; margin:0;">
+      <li>Latih kecepatan dan konsentrasi secara rutin.</li>
+      <li>Gunakan mode Latihan sebelum mencoba level yang lebih sulit.</li>
+      <li>Manfaatkan fitur bantuan dengan bijak dan hanya saat benar-benar diperlukan.</li>
+    </ul>
+  </div>
+
+  <div class="text-center mt-4" style="color:#e99500; font-weight:600; font-size:1.09em;">
+    Selamat bermain dan semoga kamu meraih skor terbaik!
+    <span class="material-icons align-middle" style="font-size:1.25em;color:#ffc107;">emoji_events</span>
+  </div>
+</div>
+</body>
+</html>

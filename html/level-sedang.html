@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#fff8c2" />
-    
+
     <link rel="icon" href="../asset/image/favicon_game.png" type="image/png">
     <style>
         body {
@@ -575,14 +575,27 @@
             clearInterval(timerInterval);
         }
 
-        function waktuHabis() {
-            document.getElementById("feedback").textContent = `⌛ Waktu habis! Jawaban yang benar: ${correctAnswer}`;
-            nyawa--;
-            updateLivesDisplay();
-            const allChoices = document.querySelectorAll(".choice");
-            allChoices.forEach(choice => choice.draggable = false);
-            setTimeout(newQuestion, 5000);
+        function penjelasanCaraHitung(a, b) {
+            // pakai konsep distribusi: pisah puluhan & satuan
+            const besar = Math.max(a, b);
+            const kecil = Math.min(a, b);
+            const puluhan = Math.floor(besar / 10);
+            const satuan = besar % 10;
+            const bagian1 = puluhan * 10 * kecil;
+            const bagian2 = satuan * kecil;
+            const total = a * b;
+            return `💡 Cara hitung: ${a} × ${b} = (${puluhan * 10} × ${kecil}) + (${satuan} × ${kecil}) = ${bagian1} + ${bagian2} = ${total}`;
         }
+
+        function waktuHabis() {
+  const penjelasan = penjelasanCaraHitung(a, b);
+  document.getElementById("feedback").innerHTML =
+    `⌛ Waktu habis! Jawaban yang benar: ${correctAnswer}<br>${penjelasan}`;
+  nyawa--;
+  updateLivesDisplay();
+  document.querySelectorAll(".choice").forEach(c => c.draggable = false);
+  setTimeout(newQuestion, 5000);
+}
 
         function updateLivesDisplay() {
             document.getElementById("lives").textContent = "❤️".repeat(nyawa);
@@ -652,7 +665,10 @@
                 score = Math.max(0, score - 1);
                 nyawa--;
                 if (soundAktif) document.getElementById("salahSound").play();
-                document.getElementById("feedback").textContent = `❌ Salah. Jawaban: ${correctAnswer}`;
+                // yang baru:
+                const penjelasan = penjelasanCaraHitung(a, b);
+                document.getElementById("feedback").innerHTML =
+                    `❌ Salah. Jawaban: ${correctAnswer}<br>${penjelasan}`;
                 setTimeout(newQuestion, 5000);
             }
             updateScoreDisplay();
