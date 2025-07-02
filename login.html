@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Game Edukasi Perkalian</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/asset/image/favicon_game.png" type="image/png">
+
+    <style>
+        body {
+            background-color: #fff8c2;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: #ffffff;
+            padding: 30px 22px 28px 22px;
+            border-radius: 15px;
+            box-shadow: 0 0 16px rgba(255,193,7,0.11), 0 1px 9px rgba(0,0,0,0.10);
+            width: 100%;
+            max-width: 370px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            color: #e99500;
+            font-weight: 700;
+            margin-bottom: 11px;
+            font-size: 1.7rem;
+            letter-spacing: .3px;
+        }
+
+        .login-box p {
+            color: #6e3012;
+            margin-bottom: 21px;
+            font-size: 1.06em;
+        }
+
+        .form-control {
+            border-radius: 9px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+            color: #744409;
+            border: none;
+            font-size: 17px;
+            padding: 9px 0;
+            border-radius: 10px;
+            width: 100%;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(255,193,7,0.12);
+            letter-spacing: .4px;
+            transition: background .15s, color .15s;
+        }
+
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #ffd54f;
+            color: #a36604;
+        }
+
+        @media (max-width: 500px) {
+            .login-box {
+                padding: 16px 4vw 13px 4vw;
+                border-radius: 11px;
+                max-width: 98vw;
+            }
+            .login-box h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <h2>Selamat Datang! 👋</h2>
+        <p>Masukkan <b>Nama</b> kamu terlebih dahulu, lalu klik tombol di bawah untuk mulai bermain <b>Game Edukasi Perkalian</b>. </p>
+        <input type="text" id="namaInput" class="form-control mb-3" maxlength="20"
+            placeholder="Masukkan Namamu di sini..." autocomplete="off" />
+        <button class="btn btn-primary" id="btnMulai" onclick="mulaiGame()">Mulai Bermain 🎮</button>
+    </div>
+
+    <script>
+        // Fungsi untuk memulai game setelah isi nama
+        function mulaiGame() {
+            const btn = document.getElementById("btnMulai");
+            const namaInput = document.getElementById("namaInput");
+            const nama = namaInput.value.trim();
+
+            if (nama.length < 3) {
+                alert("Isi nama minimal 3 karakter, ya!");
+                namaInput.focus();
+                btn.disabled = false;
+                btn.textContent = "Mulai Bermain 🎮";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "⏳ Memproses...";
+
+            // Simpan nama ke localStorage
+            localStorage.setItem("game_username", nama);
+
+            setTimeout(() => {
+                window.location.href = "./html/halaman-utama.html";
+            }, 500);
+        }
+
+        // Jika sebelumnya sudah login, langsung arahkan ke halaman utama
+        window.onload = function () {
+            const user = localStorage.getItem("game_username");
+            if (user) {
+                window.location.href = "./html/halaman-utama.html";
+            }
+        };
+    </script>
+</body>
+
+</html>

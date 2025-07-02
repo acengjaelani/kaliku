@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Petunjuk Penggunaan | Game Edukasi Perkalian</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="icon" href="../asset/image/favicon_game.png" type="image/png" />
+  <meta name="theme-color" content="#fff8c2" />
+  <style>
+    body {
+      background: linear-gradient(120deg, #fff8c2 40%, #ffe082 100%);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .petunjuk-card {
+      background: #fff;
+      border-radius: 22px;
+      max-width: 670px;
+      margin: 52px auto 38px auto;
+      box-shadow: 0 8px 32px rgba(255, 193, 7, 0.14), 0 2px 8px rgba(0,0,0,0.09);
+      padding: 40px 28px 36px 28px;
+      position: relative;
+      border: 2px solid #ffe08250;
+      transition: box-shadow .22s, transform .12s;
+      animation: fadein .7s;
+    }
+    .petunjuk-card:hover { box-shadow: 0 14px 48px rgba(255, 193, 7, 0.20), 0 3px 14px rgba(0,0,0,0.12); transform: scale(1.01);}
+    @keyframes fadein { from { opacity:0; transform: translateY(28px);} to{ opacity:1; transform: translateY(0);} }
+    .judul {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #e99500;
+      margin-bottom: 11px;
+      line-height: 1.23;
+      letter-spacing: .4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      animation: fadein .9s .2s backwards;
+    }
+    .judul .material-icons { font-size:2.4rem; color:#ffc107; vertical-align:middle;}
+    .subjudul {
+      font-size: 1.09rem;
+      font-weight: 500;
+      color: #6e3012;
+      margin-bottom: 17px;
+      text-align: center;
+    }
+    .section-title {
+      color: #6e3012;
+      font-weight: 600;
+      font-size: 1.08rem;
+      margin-top: 29px;
+      margin-bottom: 8px;
+      border-left: 5px solid #ffe082;
+      padding-left: 13px;
+      letter-spacing: .2px;
+      background: linear-gradient(92deg,#fffbe7 80%,#ffecb3 100%);
+      border-radius: 0 9px 9px 0;
+    }
+    .petunjuk-list {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 19px;
+    }
+    .petunjuk-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 1.05em;
+      margin-bottom: 9px;
+      line-height: 1.65;
+    }
+    .petunjuk-list .material-icons {
+      color: #ffb300;
+      font-size: 23px;
+      min-width: 23px;
+    }
+    .tabel-petunjuk th, .tabel-petunjuk td {
+      background: #fffde8 !important;
+      border: none;
+      font-size: 1em;
+      padding: 8px 12px;
+      color: #5b3d1b;
+      vertical-align: middle;
+    }
+    .tabel-petunjuk th { color: #e99500; font-size: 1.04em; border-bottom: 2px solid #ffe082; }
+    .tabel-petunjuk tr { border-radius: 10px !important; }
+    .tabel-petunjuk .material-icons {
+      color: #ff9800; font-size: 21px; margin-right: 2px; vertical-align: middle;
+    }
+    .tips-box {
+      background: linear-gradient(95deg,#ffecb3 70%,#fffbe7 100%);
+      border-radius: 12px;
+      color: #6e3012;
+      font-size: 1.04em;
+      padding: 15px 16px 13px 18px;
+      margin-bottom: 20px;
+      border: 1.7px solid #ffe082;
+      font-weight: 500;
+    }
+    .btn-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 19px;
+      background: #ffc107;
+      color: #744409;
+      box-shadow: 0 5px 15px rgba(255, 193, 7, .19);
+      padding: 8px 15px 8px 12px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background .18s, box-shadow .16s;
+    }
+    .btn-home:hover { background: #ffd54f; color: #b36b1a; box-shadow: 0 7px 28px rgba(255, 193, 7, .20);}
+    .footer-info {
+      font-size: .92em;
+      color: #b38c53;
+      margin-top: 22px;
+      letter-spacing: .2px;
+      text-align: center;
+      font-weight: 500;
+      opacity: 0.97;
+    }
+    /* FAQ Accordion style improvement */
+    .accordion-button:focus { box-shadow: 0 0 0 1.5px #ffc10790;}
+    .accordion-button:not(.collapsed) { color: #e99500; background: #fffde7;}
+    .accordion-body { font-size: 1.03em; }
+    @media (max-width: 720px) {
+      .petunjuk-card { max-width: 99vw; padding: 17px 2vw 14px 2vw; margin: 12px auto 24px auto;}
+      .judul { font-size: 1.18rem;}
+      .section-title { font-size: 1.0rem;}
+      .btn-home { font-size: 15px; top: 10px; left: 10px; padding: 5px 10px 5px 8px; }
+      .footer-info { font-size: .91em;}
+    }
+  </style>
+</head>
+
+<body>
+  <a href="halaman-utama.html" class="btn-home" title="Kembali ke Beranda">
+    <span class="material-icons">home</span>
+  </a>
+
+  <div class="petunjuk-card">
+    <div class="judul">
+      <span class="material-icons align-middle">menu_book</span>
+      Petunjuk Penggunaan
+    </div>
+    <div class="subjudul mb-3">
+      Panduan singkat untuk memahami menu & fitur utama <br><b>Game Edukasi Perkalian</b>.
+    </div>
+    <div class="tips-box mb-4">
+      <span class="material-icons align-middle" style="color:#4caf50">info</span>
+      Baca dulu halaman ini supaya kamu makin paham cara akses semua fitur dengan mudah!
+    </div>
+
+    <div class="section-title">Navigasi Utama & Menu</div>
+    <ul class="petunjuk-list">
+      <li><span class="material-icons">menu_book</span> <b>Petunjuk Penggunaan</b> – Halaman ini (panduan menu & fitur).</li>
+      <li><span class="material-icons">school</span> <b>Tentang Perkalian</b> – Penjelasan materi & konsep dasar.</li>
+      <li><span class="material-icons">psychology</span> <b>Cara Bermain</b> – Step-by-step & aturan bermain tiap level.</li>
+      <li><span class="material-icons">sports_esports</span> <b>Mainkan Game</b> – Pilih level & mulai quiz interaktif.</li>
+      <li><span class="material-icons">account_box</span> <b>Profil Pengembang</b> – Info tentang pembuat game ini.</li>
+      <li><span class="material-icons">account_circle</span> <b>Akun</b> – Lihat nama pemain & menu Logout.</li>
+      <li><span class="material-icons">bar_chart</span> <b>Lihat Skor</b> – Cek skor tertinggi kamu.</li>
+    </ul>
+    <div class="tips-box mb-4">
+      <b>Tips:</b> Semua menu utama bisa diakses dari <b>halaman beranda</b> atau icon <span class="material-icons" style="font-size:17px;">home</span> di kiri atas.
+    </div>
+
+    <div class="section-title">Penjelasan Tombol & Ikon di Game</div>
+    <div class="table-responsive mb-2">
+      <table class="table tabel-petunjuk table-sm">
+        <tbody>
+          <tr>
+            <td><span class="material-icons">home</span> Beranda</td>
+            <td>Kembali ke halaman utama</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons">settings</span> Pengaturan</td>
+            <td>Atur musik, sound, ulangi game, atau keluar</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons">sports_esports</span> Mainkan Game</td>
+            <td>Pilih level: Mudah, Sedang, Sulit, Mode Latihan</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons">timer</span> Timer</td>
+            <td>Sisa waktu menjawab per soal</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons" style="color:#e53935;">favorite</span> Nyawa</td>
+            <td>Sisa kesempatan bermain (jika habis = game selesai)</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons" style="color:#ffc107;">star</span> Skor</td>
+            <td>Jumlah poin, otomatis tersimpan per akun</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons" style="color:#1976d2;">help</span> Bantuan</td>
+            <td>Bisa dipakai sekali per soal: tambah waktu / lihat cara hitung</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons">bar_chart</span> Skor Terbaik</td>
+            <td>Lihat skor tertinggi di tiap level</td>
+          </tr>
+          <tr>
+            <td><span class="material-icons">logout</span> Logout</td>
+            <td>Keluar dari akun, kembali ke halaman login</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title">Tips & FAQ</div>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq1-head">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            Bagaimana skor disimpan? Apakah bisa hilang?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Skor kamu otomatis tersimpan di browser & akun yang sedang digunakan.<br>
+            Skor bisa hilang jika data browser dihapus, tapi selama masih di perangkat sama, skor akan tetap ada.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq2-head">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Apa perbedaan Mode Latihan dengan level lainnya?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Mode Latihan tidak mencatat skor akhir. Kamu bisa latihan soal sebanyak mungkin tanpa batasan nyawa atau skor.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq3-head">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            Bagaimana cara mengatur suara atau musik?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Kamu bisa mengatur suara/musik lewat tombol <span class="material-icons align-middle" style="font-size:17px;color:#fb8c00;">settings</span> di kanan atas setiap halaman game.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq4-head">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            Saya ingin mengganti nama akun, bagaimana caranya?
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Ganti nama bisa lewat menu <b>Akun</b> di kanan atas, atau saat pertama kali masuk ke game. Jika ingin reset semua data, bisa logout dan login kembali dengan nama berbeda.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq5-head">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            Bagaimana kalau ada masalah/kesulitan di game?
+          </button>
+        </h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Silakan hubungi pengembang via halaman <a href="profil.html"><b>Profil Pengembang</b></a> atau tanyakan langsung ke guru pendamping.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

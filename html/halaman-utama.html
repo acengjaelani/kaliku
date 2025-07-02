@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda | Game Edukasi Perkalian</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="icon" href="../asset/image/favicon_game.png" type="image/png" />
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#ffc107" />
+
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff8c2;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .welcome h2 {
+      font-weight: 700;
+      color: #6e3012;
+    }
+
+    .menu-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 0;
+      margin: 12px 0;
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+      border-radius: 24px;
+      color: #fff;
+      position: relative;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(0, 0, 0, 0.04) 100%);
+      box-shadow:
+        0 8px 0 0 #d1a93b,
+        0 2px 24px 0 rgba(200, 160, 60, 0.22),
+        0 1px 2px 0 rgba(0, 0, 0, 0.10);
+      transition:
+        box-shadow 0.15s cubic-bezier(.3, 1.5, .7, 1),
+        transform 0.13s cubic-bezier(.3, 1.5, .7, 1);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .menu-button:hover,
+    .menu-button:focus {
+      opacity: 0.98;
+      transform: translateY(-4px) scale(1.03);
+      box-shadow:
+        0 14px 0 0 #d1a93b,
+        0 4px 28px 0 rgba(200, 160, 60, 0.28),
+        0 2px 8px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .menu-button:active {
+      transform: translateY(5px) scale(0.97);
+      box-shadow:
+        0 2px 0 0 #d1a93b,
+        0 0px 6px 0 rgba(200, 160, 60, 0.10);
+    }
+
+    /* Efek glossy/shine atas tombol */
+    .menu-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 38%;
+      border-radius: 24px 24px 0 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.19) 0%, rgba(255, 255, 255, 0.04) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Warna tombol per menu */
+    .btn-petunjuk {
+      background: linear-gradient(180deg, #33b7fd 0%, #007bff 100%);
+    }
+
+    .btn-cara {
+      background: linear-gradient(180deg, #6eea53 0%, #28a745 100%);
+    }
+
+    .btn-materi {
+      background: linear-gradient(180deg, #ffe066 0%, #ffc107 100%);
+      color: #333 !important;
+    }
+
+    .btn-mainkan {
+      background: linear-gradient(180deg, #ff8a8a 0%, #dc3545 100%);
+    }
+
+    .btn-profil {
+      background: linear-gradient(180deg, #c7a7ff 0%, #6f42c1 100%);
+    }
+
+    @media (min-width: 768px) {
+      .button-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .btn-profil {
+        grid-column: 1 / -1;
+        justify-self: center;
+      }
+    }
+
+    .logo-game {
+      max-width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 992px) {
+      .button-grid {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .button-grid .menu-button {
+        width: 100%;
+      }
+
+    }
+
+    #modalPilihLevel .btn-3d-level {
+      position: relative;
+      border: none;
+      font-size: 1.13em;
+      font-weight: 600;
+      padding: 14px 0;
+      margin: 0 0 0.4rem 0;
+      border-radius: 16px;
+      box-shadow: 0 6px 0 #b6a347, 0 2px 14px #eee17b;
+      background: #ffe082;
+      color: #6e3012;
+      transition: all 0.15s cubic-bezier(.3, 1.5, .7, 1), box-shadow 0.13s;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-sizing: border-box;
+    }
+
+    #modalPilihLevel .btn-3d-level:active {
+      top: 4px;
+      box-shadow: 0 2px 0 #b6a347;
+      background: #ffecb3;
+      color: #b36b1a;
+    }
+
+    /* Level warna solid */
+    #modalPilihLevel .btn-3d-level.level-mudah {
+      background: #b9f08e;
+      color: #397502;
+      box-shadow: 0 6px 0 #74b760, 0 2px 14px #e6f7da;
+    }
+
+    #modalPilihLevel .btn-3d-level.level-mudah:active {
+      box-shadow: 0 2px 0 #74b760;
+      background: #d2fab8;
+    }
+
+    #modalPilihLevel .btn-3d-level.level-sedang {
+      background: #ffe066;
+      color: #bc7503;
+      box-shadow: 0 6px 0 #e5c048, 0 2px 14px #fff2a8;
+    }
+
+    #modalPilihLevel .btn-3d-level.level-sedang:active {
+      box-shadow: 0 2px 0 #e5c048;
+      background: #fff8b5;
+    }
+
+    #modalPilihLevel .btn-3d-level.level-sulit {
+      background: #ff6060;
+      color: #941818;
+      box-shadow: 0 6px 0 #c54848, 0 2px 14px #ffb3b3;
+    }
+
+    #modalPilihLevel .btn-3d-level.level-sulit:active {
+      box-shadow: 0 2px 0 #c54848;
+      background: #ff9898;
+    }
+
+    #modalPilihLevel .btn-3d-level.level-latihan {
+      background: #7faaff;
+      color: #194c8c;
+      box-shadow: 0 6px 0 #4872b7, 0 2px 14px #b3ccff;
+    }
+
+    #modalPilihLevel .btn-3d-level.level-latihan:active {
+      box-shadow: 0 2px 0 #4872b7;
+      background: #bad4ff;
+    }
+
+    #modalPilihLevel .btn-3d-level .material-icons {
+      font-size: 1.35em;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-warning shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold text-dark d-flex align-items-center" href="#">
+        Game Edukasi Perkalian
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGame"
+        aria-controls="navbarGame" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarGame">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark d-flex align-items-center" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="material-icons">account_circle</span>
+              <span class="ms-1" id="navbarPlayerName">Akun</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <h6 class="dropdown-header">👤 <span id="dropdownPlayerName">Player</span></h6>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="confirmLogout()">🔓 Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Konten Utama -->
+  <div class="container">
+    <div class="welcome text-center">
+      <img src="/asset/image/favicon_game.png" alt="Logo Game Edukasi Perkalian" class="logo-game mb-3" />
+      <h2>Hai👋, <span id="playerName">Player</span>!</h2>
+      <p class="text-muted">
+        Ini adalah game edukasi interaktif untuk membantu kamu memahami dan
+        menguasai konsep perkalian dengan cara yang menyenangkan!
+      </p>
+    </div>
+
+    <div class="button-grid">
+      <button class="menu-button btn-petunjuk w-100" onclick="window.location.href='petunjuk-penggunaan.html'">
+        <span class="material-icons">menu_book</span>Petunjuk Penggunaan
+      </button>
+      <button class="menu-button btn-materi w-100" onclick="window.location.href='tentang-perkalian.html'">
+        <span class="material-icons">school</span>Tentang Perkalian
+      </button>
+      <button class="menu-button btn-cara w-100" onclick="window.location.href='cara-bermain.html'">
+        <span class="material-icons">psychology</span>Cara Bermain
+      </button>
+      <button class="menu-button btn-mainkan w-100" onclick="tampilkanModalLevel()">
+        <span class="material-icons">sports_esports</span>Mainkan Game
+      </button>
+      <button class="menu-button btn-profil w-100" onclick="window.location.href='profil.html'">
+        <span class="material-icons">account_box</span>Profil Pengembang
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Logout -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" role="dialog"
+    aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow rounded-4">
+        <div class="modal-header bg-warning text-dark">
+          <h5 class="modal-title fw-semibold" id="logoutModalLabel">Konfirmasi Keluar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Yakin ingin keluar dari akun <strong><span id="logoutPlayerName">Player</span></strong>?</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-danger" onclick="logoutPlayer()">Ya, Keluar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Pilih Level -->
+  <div class="modal fade" id="modalPilihLevel" tabindex="-1" aria-labelledby="modalPilihLevelLabel" role="dialog"
+    aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg rounded-4">
+        <div class="modal-header bg-warning text-dark rounded-top-4">
+          <span class="material-icons me-2" style="font-size:2rem;">sports_esports</span>
+          <h5 class="modal-title flex-grow-1" id="modalPilihLevelLabel" style="font-weight:700;">
+            Pilih Level Permainan
+            <div style="font-size:14px;font-weight:400;" class="text-muted mt-1">
+              Pilih tantangan sesuai kemampuanmu!
+            </div>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body text-center d-grid gap-3">
+          <button class="btn-3d-level level-mudah w-100" onclick="window.location.href='level-mudah.html'">
+            <span class="material-icons" style="color:#397502;">eco</span> Level Mudah
+          </button>
+          <button class="btn-3d-level level-sedang w-100" onclick="window.location.href='level-sedang.html'">
+            <span class="material-icons" style="color:#bc7503;">star_half</span> Level Sedang
+          </button>
+          <button class="btn-3d-level level-sulit w-100" onclick="window.location.href='level-sulit.html'">
+            <span class="material-icons" style="color:#941818;">whatshot</span> Level Sulit
+          </button>
+          <button class="btn btn-outline-dark w-100 mt-2" onclick="tampilkanModalSkor()">
+            <span class="material-icons">bar_chart</span> Lihat Skor Terbaik
+          </button>
+        </div>
+        <div class="modal-footer justify-content-center rounded-bottom-4">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Skor Terbaik -->
+<div class="modal fade" id="modalSkorTerbaik" tabindex="-1" aria-labelledby="modalSkorTerbaikLabel" role="dialog"
+  aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow rounded-4">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title d-flex align-items-center gap-2" id="modalSkorTerbaikLabel">
+          <span class="material-icons" style="font-size:1.7rem;">bar_chart</span>
+          Skor Terbaik per Level
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+              <span class="material-icons" style="color:#397502; vertical-align:middle;">eco</span>
+              <b>Level Mudah</b>
+            </span>
+            <span id="skorLevelMudah" class="badge bg-primary rounded-pill">0</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+              <span class="material-icons" style="color:#bc7503; vertical-align:middle;">star_half</span>
+              <b>Level Sedang</b>
+            </span>
+            <span id="skorLevelSedang" class="badge bg-warning text-dark rounded-pill">0</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+              <span class="material-icons" style="color:#941818; vertical-align:middle;">whatshot</span>
+              <b>Level Sulit</b>
+            </span>
+            <span id="skorLevelSulit" class="badge bg-danger rounded-pill">0</span>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer class="bg-warning text-center text-dark py-3 mt-5 shadow-sm">
+    <div class="container">
+      <small>Created by <strong>Aceng Jaelani</strong></small>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const playerName = localStorage.getItem("game_username") || "Player";
+      document.getElementById("navbarPlayerName").textContent = playerName;
+      document.getElementById("dropdownPlayerName").textContent = playerName;
+      document.getElementById("playerName").textContent = playerName;
+      document.getElementById("logoutPlayerName").textContent = playerName;
+
+      document.querySelectorAll("button, a").forEach(el => {
+        el.addEventListener("click", playKlikSound);
+      });
+    });
+
+    if (!localStorage.getItem("game_username")) {
+      window.location.href = "../login.html";
+    }
+
+    function logoutPlayer() {
+      localStorage.removeItem("game_username");
+      window.location.href = "../login.html";
+    }
+
+    function confirmLogout() {
+      const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
+      modal.show();
+    }
+
+    function playKlikSound() {
+      const klikSound = document.getElementById("klikSound");
+      if (klikSound) {
+        klikSound.currentTime = 0;
+        klikSound.play();
+      }
+    }
+
+    function tampilkanModalLevel() {
+      const modal = new bootstrap.Modal(document.getElementById('modalPilihLevel'));
+      modal.show();
+    }
+
+    function tampilkanModalSkor() {
+      const namaPlayer = localStorage.getItem("game_username");
+
+      const skorMudah = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_mudah`))?.score || 0;
+      const skorSedang = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_sedang`))?.score || 0;
+      const skorSulit = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_sulit`))?.score || 0;
+
+      document.getElementById("skorLevelMudah").textContent = skorMudah;
+      document.getElementById("skorLevelSedang").textContent = skorSedang;
+      document.getElementById("skorLevelSulit").textContent = skorSulit;
+
+      const modal = new bootstrap.Modal(document.getElementById("modalSkorTerbaik"));
+      modal.show();
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../sw.js').then((reg) => {
+        reg.onupdatefound = () => {
+          const newSW = reg.installing;
+          newSW.onstatechange = () => {
+            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+              // Versi baru siap
+              tampilkanNotifikasiUpdate();
+            }
+          };
+        };
+      });
+    }
+
+    function tampilkanNotifikasiUpdate() {
+      const banner = document.createElement('div');
+      banner.innerHTML = `
+    <div class="position-fixed bottom-0 start-0 end-0 bg-dark text-white text-center p-3" style="z-index:9999;">
+      🔄 New version available!
+      <button class="btn btn-sm btn-light ms-2" onclick="location.reload()">Refresh</button>
+    </div>`;
+      document.body.appendChild(banner);
+    }
+  </script>
+
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <audio id="klikSound" src="../asset/sound/mouse-click.wav"></audio>
+</body>
+
+</html>

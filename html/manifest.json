@@ -1,0 +1,21 @@
+{
+  "name": "Game Edukasi Perkalian",
+  "short_name": "Perkalian",
+  "start_url": "halaman-utama.html",
+  "display": "standalone",
+  "background_color": "#fff8c2",
+  "theme_color": "#ffc107",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/asset/image/favicon_game.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/asset/image/favicon_game.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
