@@ -653,10 +653,10 @@
                 nyawa--;
                 if (soundAktif) document.getElementById("salahSound").play();
                 document.getElementById("feedback").textContent = `❌ Salah. Jawaban: ${correctAnswer}`;
+                setTimeout(newQuestion, 5000);
             }
             updateScoreDisplay();
             updateLivesDisplay();
-            setTimeout(newQuestion, 5000);
         }
 
         function updateScoreDisplay() {

@@ -605,7 +605,7 @@
             document.getElementById("question").textContent = `${a} × ${b} = ?`;
             document.getElementById("dropzone").textContent = "Tarik jawaban ke sini";
             document.getElementById("feedback").textContent = "";
-            document.getElementById("hint").textContent = ""; // ⬅️ Ini harus ada
+            document.getElementById("hint").textContent = "";
             bantuanDigunakan = false;
             generateChoices();
             stopTimer();
@@ -659,10 +659,10 @@
                 if (soundAktif) document.getElementById("salahSound").play();
                 const penjelasan = penjelasanCaraHitung(a, b);
                 document.getElementById("feedback").innerHTML = `❌ Salah. Jawaban: ${correctAnswer}<br>${penjelasan}`;
+                setTimeout(newQuestion, 5000);
             }
             updateScoreDisplay();
             updateLivesDisplay();
-            setTimeout(newQuestion, 3000);
         }
 
         function updateScoreDisplay() {

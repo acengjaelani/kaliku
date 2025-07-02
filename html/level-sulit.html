@@ -637,10 +637,10 @@
                 if (soundAktif) document.getElementById("salahSound").play();
                 const penjelasan = penjelasanCaraHitung(a, b);
                 document.getElementById("feedback").innerHTML = `❌ Salah. Jawaban: ${correctAnswer}<br>${penjelasan}`;
+                setTimeout(newQuestion, 5000);
             }
             updateScoreDisplay();
             updateLivesDisplay();
-            setTimeout(newQuestion, 5000);
         }
 
         function updateScoreDisplay() {
