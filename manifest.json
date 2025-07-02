@@ -1,7 +1,8 @@
 {
   "name": "Game Edukasi Perkalian",
   "short_name": "Perkalian",
-  "start_url": "halaman-utama.html",
+  "start_url": "/html/halaman-utama.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#fff8c2",
   "theme_color": "#ffc107",
