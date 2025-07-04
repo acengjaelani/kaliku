@@ -1,57 +1,86 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login | Game Edukasi Perkalian</title>
+    <title>Login | KaliKu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/asset/image/favicon_game.png" type="image/png">
-
+    <link rel="icon" href="../asset/image/kaliku.png" type="image/png">
     <style>
         body {
             background-color: #fff8c2;
             font-family: "Poppins", sans-serif;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             padding: 20px;
         }
-
+        .game-header {
+            text-align: center;
+            margin-bottom: 18px;
+            animation: fadeIn 0.9s;
+        }
+        .kaliku-title-main {
+            color: #e99500;
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: 1.4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        /* Cukup gunakan .logo-game, hilangkan styling img lain */
+        .logo-game {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto 7px auto;
+        }
+        .welcome-msg {
+            color: #6e3012;
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+            line-height: 1.2;
+        }
+        .desc-kaliku {
+            font-size: 1.13rem;
+            color: #744409;
+            margin-bottom: 22px;
+            font-weight: 500;
+            max-width: 430px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 6px;
+        }
         .login-box {
             background: #ffffff;
-            padding: 30px 22px 28px 22px;
-            border-radius: 15px;
-            box-shadow: 0 0 16px rgba(255,193,7,0.11), 0 1px 9px rgba(0,0,0,0.10);
+            padding: 33px 22px 25px 22px;
+            border-radius: 17px;
+            box-shadow: 0 0 18px rgba(255, 193, 7, 0.12), 0 1px 9px rgba(0, 0, 0, 0.11);
             width: 100%;
             max-width: 370px;
             text-align: center;
+            position: relative;
+            animation: fadeIn 0.7s;
         }
-
-        .login-box h2 {
-            color: #e99500;
-            font-weight: 700;
-            margin-bottom: 11px;
-            font-size: 1.7rem;
-            letter-spacing: .3px;
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.97);}
+            100% { opacity: 1; transform: scale(1);}
         }
-
-        .login-box p {
-            color: #6e3012;
-            margin-bottom: 21px;
-            font-size: 1.06em;
-        }
-
         .form-control {
             border-radius: 9px;
             font-size: 16px;
             text-align: center;
             font-weight: 500;
         }
-
         .btn-primary {
             background-color: #ffc107;
             color: #744409;
@@ -61,36 +90,58 @@
             border-radius: 10px;
             width: 100%;
             font-weight: 600;
-            box-shadow: 0 2px 10px rgba(255,193,7,0.12);
+            box-shadow: 0 2px 10px rgba(255, 193, 7, 0.12);
             letter-spacing: .4px;
-            transition: background .15s, color .15s;
+            transition: background .15s, color .15s, transform .12s;
         }
-
-        .btn-primary:hover, .btn-primary:focus {
+        .btn-primary:hover,
+        .btn-primary:focus {
             background-color: #ffd54f;
             color: #a36604;
+            transform: scale(1.03);
         }
-
+        .login-info {
+            color: #6e3012;
+            margin-bottom: 21px;
+            font-size: 1.07em;
+        }
         @media (max-width: 500px) {
+            .game-header { margin-bottom: 12px; }
+            .kaliku-title-main { font-size: 1.3rem; }
+            .logo-game { max-width: 90px; }
+            .welcome-msg { font-size: 1.18rem; margin-bottom: 7px; }
+            .desc-kaliku { font-size: 1.01rem; margin-bottom: 16px; }
             .login-box {
-                padding: 16px 4vw 13px 4vw;
+                padding: 15px 2vw 10px 2vw;
                 border-radius: 11px;
                 max-width: 98vw;
             }
-            .login-box h2 { font-size: 1.2rem; }
         }
     </style>
 </head>
 
 <body>
+    <!-- HEADER, JUDUL, & UCAPAN SELAMAT DATANG DI LUAR CONTAINER -->
+    <div class="game-header">
+        <div class="kaliku-title-main">
+            <img src="/asset/image/kaliku.png" alt="Logo Game Edukasi Perkalian" class="logo-game" />
+        </div>
+        <div class="welcome-msg">
+            Selamat Datang di <span style="color:#e99500;">KaliKu</span>! 👋
+        </div>
+        <div class="desc-kaliku">
+            KaliKu adalah game edukasi perkalian interaktif untuk melatih dan mengasah kemampuan perkalian dengan cara yang seru dan menyenangkan!
+        </div>
+    </div>
+    <!-- HANYA FORM LOGIN DALAM CONTAINER -->
     <div class="login-box">
-        <h2>Selamat Datang! 👋</h2>
-        <p>Masukkan <b>Nama</b> kamu terlebih dahulu, lalu klik tombol di bawah untuk mulai bermain <b>Game Edukasi Perkalian</b>. </p>
+        <div class="login-info">
+            Masukkan <b>Namamu</b> terlebih dahulu, lalu klik tombol di bawah untuk memulai <b>petualangan perkalian</b>!
+        </div>
         <input type="text" id="namaInput" class="form-control mb-3" maxlength="20"
-            placeholder="Masukkan Namamu di sini..." autocomplete="off" />
+            placeholder="Tulis Nama Kamu di sini..." autocomplete="off" />
         <button class="btn btn-primary" id="btnMulai" onclick="mulaiGame()">Mulai Bermain 🎮</button>
     </div>
-
     <script>
         // Fungsi untuk memulai game setelah isi nama
         function mulaiGame() {
@@ -116,7 +167,6 @@
                 window.location.href = "./html/halaman-utama.html";
             }, 500);
         }
-
         // Jika sebelumnya sudah login, langsung arahkan ke halaman utama
         window.onload = function () {
             const user = localStorage.getItem("game_username");
@@ -126,5 +176,4 @@
         };
     </script>
 </body>
-
 </html>

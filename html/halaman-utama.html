@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beranda | Game Edukasi Perkalian</title>
+  <title>Beranda | KaliKu</title>
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link rel="icon" href="../asset/image/favicon_game.png" type="image/png" />
+  <link rel="icon" href="../asset/image/logo_game.png" type="image/png" />
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#ffc107" />
 
@@ -31,7 +31,22 @@
       flex: 1;
       max-width: 800px;
       margin: 0 auto;
-      /* ganti dari margin: auto; */
+    }
+
+    /* ganti warna brand text */
+    .navbar-brand {
+      color: #6e3012 !important;
+    }
+
+    /* footer teks jadi coklat */
+    footer,
+    footer small {
+      color: #6e3012 !important;
+    }
+
+    /* override hamburger icon jadi coklat */
+    .navbar-toggler .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%236e3012' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
 
     .welcome h2 {
@@ -238,7 +253,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-warning shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold text-dark d-flex align-items-center" href="#">
-        Game Edukasi Perkalian
+        KaliKu
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGame"
@@ -273,11 +288,10 @@
   <!-- Konten Utama -->
   <div class="container">
     <div class="welcome text-center">
-      <img src="/asset/image/favicon_game.png" alt="Logo Game Edukasi Perkalian" class="logo-game mb-3" />
+      <img src="/asset/image/kaliku.png" alt="Logo Game Edukasi Perkalian" class="logo-game mb-3" />
       <h2>Hai👋, <span id="playerName">Player</span>!</h2>
       <p class="text-muted">
-        Ini adalah game edukasi interaktif untuk membantu kamu memahami dan
-        menguasai konsep perkalian dengan cara yang menyenangkan!
+        Gunakan menu di bawah untuk belajar, bermain, dan mengetahui informasi tentang KaliKu.
       </p>
     </div>
 
@@ -400,25 +414,6 @@
     </div>
   </div>
 
-  <!-- Modal Konfirmasi Keluar Aplikasi
-  <div class="modal fade" id="modalAppExit" tabindex="-1" aria-labelledby="modalAppExitLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 shadow-lg">
-        <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title" id="modalAppExitLabel">Keluar Aplikasi</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <div class="modal-body text-center">
-          <p>Apakah Anda yakin ingin keluar dari aplikasi?</p>
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-danger" id="confirmAppExit">Ya, Keluar</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <!-- Footer -->
   <footer class="bg-warning text-center text-dark py-3 mt-5 shadow-sm">
     <div class="container">
@@ -449,36 +444,57 @@
       window.location.href = "../login.html";
     }
 
-    // function confirmLogout() {
-    //   const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
-    //   modal.show();
-    // }
+    function confirmLogout() {
+      const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
+      modal.show();
+    }
 
-    // // Pastikan pushState dipanggil sekali setelah halaman siap
-    // window.addEventListener("load", () => {
-    //   history.pushState(null, null, location.href);
-    // });
+    // Pastikan pushState dipanggil sekali setelah halaman siap
+    window.addEventListener("load", () => {
+      history.pushState(null, null, location.href);
+    });
 
-    // // Saat popstate (back button) terjadi, tampilkan modal AppExit
-    // window.addEventListener("popstate", (e) => {
-    //   e.preventDefault();
-    //   const modal = new bootstrap.Modal(document.getElementById("modalAppExit"));
-    //   modal.show();
-    //   // Push state lagi biar halaman tidak benar-benar mundur
-    //   history.pushState(null, null, location.href);
-    // });
+    // Saat popstate (back button) terjadi, tampilkan modal AppExit
+    window.addEventListener("popstate", (e) => {
+      e.preventDefault();
+      const modal = new bootstrap.Modal(document.getElementById("modalAppExit"));
+      modal.show();
+      // Push state lagi biar halaman tidak benar-benar mundur
+      history.pushState(null, null, location.href);
+    });
 
-    // // Jika user konfirmasi keluar, panggil window.close()
-    // document.getElementById("confirmAppExit").addEventListener("click", () => {
-    //   window.close();
-    // });
+    // Jika user konfirmasi keluar, panggil window.close()
+    document.getElementById("confirmAppExit").addEventListener("click", () => {
+      window.close();
+    });
 
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("button, a").forEach(el => {
+        el.addEventListener("click", playKlikSound);
+      });
+
+      // Unlock audio di awal untuk iOS/Safari dsb
+      const klikSound = document.getElementById("klikSound");
+      if (klikSound) {
+        const unlock = () => {
+          klikSound.play().then(() => klikSound.pause());
+          document.removeEventListener('touchstart', unlock);
+          document.removeEventListener('mousedown', unlock);
+        };
+        document.addEventListener('touchstart', unlock, { once: true });
+        document.addEventListener('mousedown', unlock, { once: true });
+      }
+    });
 
     function playKlikSound() {
       const klikSound = document.getElementById("klikSound");
       if (klikSound) {
+        klikSound.pause();
         klikSound.currentTime = 0;
-        klikSound.play();
+        klikSound.play().catch(() => {
+          setTimeout(() => klikSound.play(), 80);
+        });
       }
     }
 
@@ -529,7 +545,7 @@
 
   <!-- Bootstrap Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <audio id="klikSound" src="../asset/sound/mouse-click.wav"></audio>
+  <audio id="klikSound" src="../asset/sound/mouse-click.wav" preload="auto"></audio>
 </body>
 
 </html>
