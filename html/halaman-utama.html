@@ -314,25 +314,34 @@
     </div>
   </div>
 
-  <!-- Modal Logout -->
-  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" role="dialog"
-    aria-modal="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-0 shadow rounded-4">
-        <div class="modal-header bg-warning text-dark">
-          <h5 class="modal-title fw-semibold" id="logoutModalLabel">Konfirmasi Keluar</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <div class="modal-body text-center">
-          <p>Yakin ingin keluar dari akun <strong><span id="logoutPlayerName">Player</span></strong>?</p>
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-danger" onclick="logoutPlayer()">Ya, Keluar</button>
-        </div>
+  <!-- Modal Logout (Perbaikan Konsisten) -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg rounded-4 border-0">
+      <div class="modal-header bg-warning text-dark rounded-top-4 d-flex align-items-center">
+        <span class="material-icons fs-1 me-2">logout</span>
+        <h5 class="modal-title flex-grow-1 fw-bold" id="logoutModalLabel">Konfirmasi Keluar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p style="font-size:1.12em; margin-bottom:0;">
+          Yakin ingin keluar dari akun <strong><span id="logoutPlayerName">Player</span></strong>?
+        </p>
+      </div>
+      <div class="modal-footer bg-light rounded-bottom-4 d-flex flex-column flex-md-row gap-2 justify-content-between">
+        <button type="button" class="btn btn-secondary w-100 w-md-auto rounded-pill d-flex align-items-center justify-content-center gap-2" data-bs-dismiss="modal">
+          <span class="material-icons">close</span>
+          <span>Batal</span>
+        </button>
+        <button type="button" class="btn btn-danger w-100 w-md-auto rounded-pill d-flex align-items-center justify-content-center gap-2" onclick="logoutPlayer()">
+          <span class="material-icons">logout</span>
+          <span>Ya, Keluar</span>
+        </button>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- Modal Pilih Level -->
   <div class="modal fade" id="modalPilihLevel" tabindex="-1" aria-labelledby="modalPilihLevelLabel" role="dialog"
