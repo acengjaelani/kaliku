@@ -1,12 +1,11 @@
 # Game Edukasi Perkalian
 
-Game interaktif untuk membantu siswa SMK memahami konsep dasar perkalian melalui latihan soal, kuis, dan permainan tingkat (level).
+Game interaktif untuk membantu siswa  memahami konsep dasar perkalian melalui latihan soal, kuis, dan permainan tingkat (level).
 
 ## Fitur
-- Mode latihan dan kuis
 - Tiga tingkat kesulitan
-- Suara interaktif dan karakter visual
-- Dukungan PWA (bisa dimainkan offline)
+- Suara interaktif 
+- Dukungan PWA
 - Sistem login sederhana
 
 ## Struktur Folder
