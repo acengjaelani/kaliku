@@ -5,8 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beranda | KaliKu</title>
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -33,18 +31,15 @@
       margin: 0 auto;
     }
 
-    /* ganti warna brand text */
     .navbar-brand {
       color: #6e3012 !important;
     }
 
-    /* footer teks jadi coklat */
     footer,
     footer small {
       color: #6e3012 !important;
     }
 
-    /* override hamburger icon jadi coklat */
     .navbar-toggler .navbar-toggler-icon {
       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%236e3012' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
@@ -96,7 +91,6 @@
         0 0px 6px 0 rgba(200, 160, 60, 0.10);
     }
 
-    /* Efek glossy/shine atas tombol */
     .menu-button::before {
       content: "";
       position: absolute;
@@ -110,7 +104,6 @@
       z-index: 1;
     }
 
-    /* Warna tombol per menu */
     .btn-petunjuk {
       background: linear-gradient(180deg, #33b7fd 0%, #007bff 100%);
     }
@@ -161,7 +154,6 @@
       .button-grid .menu-button {
         width: 100%;
       }
-
     }
 
     #modalPilihLevel .btn-3d-level {
@@ -191,7 +183,6 @@
       color: #b36b1a;
     }
 
-    /* Level warna solid */
     #modalPilihLevel .btn-3d-level.level-mudah {
       background: #b9f08e;
       color: #397502;
@@ -225,17 +216,6 @@
       background: #ff9898;
     }
 
-    #modalPilihLevel .btn-3d-level.level-latihan {
-      background: #7faaff;
-      color: #194c8c;
-      box-shadow: 0 6px 0 #4872b7, 0 2px 14px #b3ccff;
-    }
-
-    #modalPilihLevel .btn-3d-level.level-latihan:active {
-      box-shadow: 0 2px 0 #4872b7;
-      background: #bad4ff;
-    }
-
     #modalPilihLevel .btn-3d-level .material-icons {
       font-size: 1.35em;
     }
@@ -243,6 +223,82 @@
     @media (max-width: 767.98px) {
       .navbar-toggler-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .button-grid .menu-button {
+        margin-bottom: 12px;
+      }
+    }
+
+    @keyframes masukDariBawah {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .welcome h2 {
+      animation: masukDariBawah 0.7s cubic-bezier(.3, 1.5, .7, 1);
+    }
+
+    /* ==== TOAST Unlock Notification === */
+    .toast-unlock {
+      position: fixed;
+      z-index: 1080;
+      top: 28px;
+      right: 24px;
+      min-width: 280px;
+      max-width: 350px;
+      background: #fffde8;
+      color: #56401b;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px #e5d37f70, 0 2px 12px #ad91014b;
+      border: 1.5px solid #ffe066;
+      padding: 1rem 1.5rem 1rem 1.1rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s cubic-bezier(.57,1.44,.58,.94);
+      animation: toastFadeInTop .55s cubic-bezier(.5,1.7,.67,1.02);
+    }
+    @keyframes toastFadeInTop {
+      from { opacity: 0; transform: translateY(-30px);}
+      to   { opacity: 1; transform: none;}
+    }
+    .toast-unlock.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .toast-unlock .material-icons {
+      font-size: 2.1rem;
+      color: #f6ad20;
+      flex-shrink: 0;
+    }
+    .toast-unlock .toast-close-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      margin-left: auto;
+      color: #c9a531;
+      cursor: pointer;
+    }
+    @media (max-width: 576px) {
+      .toast-unlock {
+        right: 8px;
+        left: 8px;
+        min-width: unset;
+        max-width: 98vw;
       }
     }
   </style>
@@ -314,34 +370,39 @@
     </div>
   </div>
 
-  <!-- Modal Logout (Perbaikan Konsisten) -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" role="dialog" aria-modal="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content shadow-lg rounded-4 border-0">
-      <div class="modal-header bg-warning text-dark rounded-top-4 d-flex align-items-center">
-        <span class="material-icons fs-1 me-2">logout</span>
-        <h5 class="modal-title flex-grow-1 fw-bold" id="logoutModalLabel">Konfirmasi Keluar</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p style="font-size:1.12em; margin-bottom:0;">
-          Yakin ingin keluar dari akun <strong><span id="logoutPlayerName">Player</span></strong>?
-        </p>
-      </div>
-      <div class="modal-footer bg-light rounded-bottom-4 d-flex flex-column flex-md-row gap-2 justify-content-between">
-        <button type="button" class="btn btn-secondary w-100 w-md-auto rounded-pill d-flex align-items-center justify-content-center gap-2" data-bs-dismiss="modal">
-          <span class="material-icons">close</span>
-          <span>Batal</span>
-        </button>
-        <button type="button" class="btn btn-danger w-100 w-md-auto rounded-pill d-flex align-items-center justify-content-center gap-2" onclick="logoutPlayer()">
-          <span class="material-icons">logout</span>
-          <span>Ya, Keluar</span>
-        </button>
+  <!-- Modal Logout -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" role="dialog"
+    aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg rounded-4 border-0">
+        <div class="modal-header bg-warning text-dark rounded-top-4 d-flex align-items-center">
+          <span class="material-icons fs-1 me-2">logout</span>
+          <h5 class="modal-title flex-grow-1 fw-bold" id="logoutModalLabel">Konfirmasi Keluar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p style="font-size:1.12em; margin-bottom:0;">
+            Yakin ingin keluar dari akun <strong><span id="logoutPlayerName">Player</span></strong>?
+          </p>
+        </div>
+        <div
+          class="modal-footer bg-light rounded-bottom-4 d-flex flex-column flex-md-row gap-2 justify-content-between">
+          <button type="button"
+            class="btn btn-secondary w-100 w-md-auto rounded-pill d-flex align-items-center justify-content-center gap-2"
+            data-bs-dismiss="modal">
+            <span class="material-icons">close</span>
+            <span>Batal</span>
+          </button>
+          <button type="button"
+            class="btn btn-danger w-100 w-md-auto rounded-pill d-flex align-items-center justify-content-center gap-2"
+            onclick="logoutPlayer()">
+            <span class="material-icons">logout</span>
+            <span>Ya, Keluar</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Modal Pilih Level -->
   <div class="modal fade" id="modalPilihLevel" tabindex="-1" aria-labelledby="modalPilihLevelLabel" role="dialog"
@@ -353,23 +414,20 @@
           <h5 class="modal-title flex-grow-1" id="modalPilihLevelLabel" style="font-weight:700;">
             Pilih Level Permainan
             <div style="font-size:14px;font-weight:400;" class="text-muted mt-1">
-              Pilih tantangan sesuai kemampuanmu!
+              Buka level berikutnya setelah menuntaskan level sebelumnya!
             </div>
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
         </div>
         <div class="modal-body text-center d-grid gap-3">
-          <button class="btn-3d-level level-mudah w-100" onclick="window.location.href='level-mudah.html'">
+          <button class="btn-3d-level level-mudah w-100" id="btnLevelMudah" onclick="bukaLevel('mudah')">
             <span class="material-icons" style="color:#397502;">eco</span> Level Mudah
           </button>
-          <button class="btn-3d-level level-sedang w-100" onclick="window.location.href='level-sedang.html'">
-            <span class="material-icons" style="color:#bc7503;">star_half</span> Level Sedang
+          <button class="btn-3d-level level-sedang w-100" id="btnLevelSedang" onclick="bukaLevel('sedang')">
+            <span class="material-icons" id="iconLockSedang" style="color:#bc7503;">star_half</span> Level Sedang
           </button>
-          <button class="btn-3d-level level-sulit w-100" onclick="window.location.href='level-sulit.html'">
-            <span class="material-icons" style="color:#941818;">whatshot</span> Level Sulit
-          </button>
-          <button class="btn btn-outline-dark w-100 mt-2" onclick="tampilkanModalSkor()">
-            <span class="material-icons">bar_chart</span> Lihat Skor Terbaik
+          <button class="btn-3d-level level-sulit w-100" id="btnLevelSulit" onclick="bukaLevel('sulit')">
+            <span class="material-icons" id="iconLockSulit" style="color:#941818;">whatshot</span> Level Sulit
           </button>
         </div>
         <div class="modal-footer justify-content-center rounded-bottom-4">
@@ -379,182 +437,201 @@
     </div>
   </div>
 
-  <!-- Modal Skor Terbaik -->
-  <div class="modal fade" id="modalSkorTerbaik" tabindex="-1" aria-labelledby="modalSkorTerbaikLabel" role="dialog"
-    aria-modal="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content shadow rounded-4">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title d-flex align-items-center gap-2" id="modalSkorTerbaikLabel">
-            <span class="material-icons" style="font-size:1.7rem;">bar_chart</span>
-            Skor Terbaik per Level
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <div class="modal-body">
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <span>
-                <span class="material-icons" style="color:#397502; vertical-align:middle;">eco</span>
-                <b>Level Mudah</b>
-              </span>
-              <span id="skorLevelMudah" class="badge bg-primary rounded-pill">0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <span>
-                <span class="material-icons" style="color:#bc7503; vertical-align:middle;">star_half</span>
-                <b>Level Sedang</b>
-              </span>
-              <span id="skorLevelSedang" class="badge bg-warning text-dark rounded-pill">0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <span>
-                <span class="material-icons" style="color:#941818; vertical-align:middle;">whatshot</span>
-                <b>Level Sulit</b>
-              </span>
-              <span id="skorLevelSulit" class="badge bg-danger rounded-pill">0</span>
-            </li>
-          </ul>
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-        </div>
-      </div>
-    </div>
+  <!-- === Custom TOAST: Unlock Notification === -->
+  <div id="toastUnlockLevel" class="toast-unlock" style="display:none;">
+    <span class="material-icons">lock_open</span>
+    <span id="toastUnlockMsg">Level berikutnya berhasil dibuka!</span>
+    <button type="button" class="toast-close-btn" onclick="hideUnlockToast()">&times;</button>
   </div>
 
-  <!-- Footer -->
   <footer class="bg-warning text-center text-dark py-3 mt-5 shadow-sm">
     <div class="container">
       <small>Created by <strong>Aceng Jaelani</strong></small>
     </div>
   </footer>
 
-  <!-- Script -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const playerName = localStorage.getItem("game_username") || "Player";
-      document.getElementById("navbarPlayerName").textContent = playerName;
-      document.getElementById("dropdownPlayerName").textContent = playerName;
-      document.getElementById("playerName").textContent = playerName;
-      document.getElementById("logoutPlayerName").textContent = playerName;
+  document.addEventListener("DOMContentLoaded", () => {
+    // Nama player
+    const playerName = localStorage.getItem("game_username") || "Player";
+    document.getElementById("navbarPlayerName").textContent = playerName;
+    document.getElementById("dropdownPlayerName").textContent = playerName;
+    document.getElementById("playerName").textContent = playerName;
+    document.getElementById("logoutPlayerName").textContent = playerName;
 
-      document.querySelectorAll("button, a").forEach(el => {
-        el.addEventListener("click", playKlikSound);
-      });
+    // Suara klik
+    document.querySelectorAll("button, a").forEach(el => {
+      el.addEventListener("click", playKlikSound);
     });
 
-    if (!localStorage.getItem("game_username")) {
-      window.location.href = "../login.html";
+    // Sound klik hack for mobile
+    const klikSound = document.getElementById("klikSound");
+    if (klikSound) {
+      const unlock = () => {
+        klikSound.play().then(() => klikSound.pause());
+        document.removeEventListener('touchstart', unlock);
+        document.removeEventListener('mousedown', unlock);
+      };
+      document.addEventListener('touchstart', unlock, { once: true });
+      document.addEventListener('mousedown', unlock, { once: true });
     }
 
-    function logoutPlayer() {
-      localStorage.removeItem("game_username");
-      window.location.href = "../login.html";
-    }
-
-    function confirmLogout() {
-      const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
-      modal.show();
-    }
-
-    // Pastikan pushState dipanggil sekali setelah halaman siap
-    window.addEventListener("load", () => {
-      history.pushState(null, null, location.href);
-    });
-
-    // Saat popstate (back button) terjadi, tampilkan modal AppExit
-    window.addEventListener("popstate", (e) => {
-      e.preventDefault();
-      const modal = new bootstrap.Modal(document.getElementById("modalAppExit"));
-      modal.show();
-      // Push state lagi biar halaman tidak benar-benar mundur
-      history.pushState(null, null, location.href);
-    });
-
-    // Jika user konfirmasi keluar, panggil window.close()
-    document.getElementById("confirmAppExit").addEventListener("click", () => {
-      window.close();
-    });
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("button, a").forEach(el => {
-        el.addEventListener("click", playKlikSound);
-      });
-
-      // Unlock audio di awal untuk iOS/Safari dsb
-      const klikSound = document.getElementById("klikSound");
-      if (klikSound) {
-        const unlock = () => {
-          klikSound.play().then(() => klikSound.pause());
-          document.removeEventListener('touchstart', unlock);
-          document.removeEventListener('mousedown', unlock);
-        };
-        document.addEventListener('touchstart', unlock, { once: true });
-        document.addEventListener('mousedown', unlock, { once: true });
-      }
-    });
-
-    function playKlikSound() {
-      const klikSound = document.getElementById("klikSound");
-      if (klikSound) {
-        klikSound.pause();
-        klikSound.currentTime = 0;
-        klikSound.play().catch(() => {
-          setTimeout(() => klikSound.play(), 80);
+    // --- Tampilkan TOAST unlock level jika ada flag di localStorage ---
+    if (window.location.search.includes('showLevel=1')) {
+      setTimeout(() => {
+        tampilkanModalLevel(() => {
+          // Toast hanya muncul setelah modal level terbuka
+          const unlock = localStorage.getItem('game_last_unlock');
+          if (unlock) {
+            showUnlockToast(unlock);
+            setTimeout(() => localStorage.removeItem('game_last_unlock'), 800);
+          }
         });
+        // Hapus query string agar ga terus2an
+        if (history.replaceState) {
+          history.replaceState({}, document.title, window.location.pathname);
+        }
+      }, 500);
+    } else {
+      // Kalau buka manual, toast tetap jalan jika unlock flag ada
+      const unlock = localStorage.getItem('game_last_unlock');
+      if (unlock) {
+        showUnlockToast(unlock);
+        setTimeout(() => localStorage.removeItem('game_last_unlock'), 800);
       }
     }
+  });
 
-    function tampilkanModalLevel() {
-      const modal = new bootstrap.Modal(document.getElementById('modalPilihLevel'));
-      modal.show();
-    }
+  if (!localStorage.getItem("game_username")) {
+    window.location.href = "../login.html";
+  }
 
-    function tampilkanModalSkor() {
-      const namaPlayer = localStorage.getItem("game_username");
+  function logoutPlayer() {
+    localStorage.removeItem("game_username");
+    window.location.href = "../login.html";
+  }
 
-      const skorMudah = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_mudah`))?.score || 0;
-      const skorSedang = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_sedang`))?.score || 0;
-      const skorSulit = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_sulit`))?.score || 0;
+  function confirmLogout() {
+    const modal = new bootstrap.Modal(document.getElementById('logoutModal'));
+    modal.show();
+  }
 
-      document.getElementById("skorLevelMudah").textContent = skorMudah;
-      document.getElementById("skorLevelSedang").textContent = skorSedang;
-      document.getElementById("skorLevelSulit").textContent = skorSulit;
-
-      const modal = new bootstrap.Modal(document.getElementById("modalSkorTerbaik"));
-      modal.show();
-    }
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then((reg) => {
-        reg.onupdatefound = () => {
-          const newSW = reg.installing;
-          newSW.onstatechange = () => {
-            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-              // Versi baru siap
-              tampilkanNotifikasiUpdate();
-            }
-          };
-        };
+  function playKlikSound() {
+    const klikSound = document.getElementById("klikSound");
+    if (klikSound) {
+      klikSound.pause();
+      klikSound.currentTime = 0;
+      klikSound.play().catch(() => {
+        setTimeout(() => klikSound.play(), 80);
       });
     }
+  }
 
-    function tampilkanNotifikasiUpdate() {
-      const banner = document.createElement('div');
-      banner.innerHTML = `
-    <div class="position-fixed bottom-0 start-0 end-0 bg-dark text-white text-center p-3" style="z-index:9999;">
-      🔄 New version available!
-      <button class="btn btn-sm btn-light ms-2" onclick="location.reload()">Refresh</button>
-    </div>`;
-      document.body.appendChild(banner);
+  // === MODAL LEVEL ===
+  function tampilkanModalLevel(callbackAfterShow = null) {
+    const namaPlayer = localStorage.getItem("game_username") || "Player";
+    const selesaiMudah = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_mudah`))?.finished || false;
+    const selesaiSedang = JSON.parse(localStorage.getItem(`game_progress_${namaPlayer}_sedang`))?.finished || false;
+
+    // Level Mudah
+    const btnMudah = document.getElementById('btnLevelMudah');
+    btnMudah.disabled = false;
+    btnMudah.classList.remove('disabled');
+    btnMudah.querySelector('.material-icons').textContent = "eco";
+
+    // Level Sedang
+    const btnSedang = document.getElementById('btnLevelSedang');
+    if (selesaiMudah) {
+      btnSedang.disabled = false;
+      btnSedang.classList.remove('disabled');
+      document.getElementById('iconLockSedang').textContent = "star_half";
+    } else {
+      btnSedang.disabled = true;
+      btnSedang.classList.add('disabled');
+      document.getElementById('iconLockSedang').textContent = "lock";
     }
-  </script>
 
-  <!-- Bootstrap Bundle -->
+    // Level Sulit
+    const btnSulit = document.getElementById('btnLevelSulit');
+    if (selesaiSedang) {
+      btnSulit.disabled = false;
+      btnSulit.classList.remove('disabled');
+      document.getElementById('iconLockSulit').textContent = "whatshot";
+    } else {
+      btnSulit.disabled = true;
+      btnSulit.classList.add('disabled');
+      document.getElementById('iconLockSulit').textContent = "lock";
+    }
+
+    const modal = new bootstrap.Modal(document.getElementById('modalPilihLevel'));
+    modal.show();
+
+    // Callback agar TOAST bisa muncul setelah modal level dibuka
+    if (typeof callbackAfterShow === 'function') {
+      setTimeout(callbackAfterShow, 500);
+    }
+  }
+
+  function bukaLevel(level) {
+    const btn = document.getElementById('btnLevel' + capitalizeFirst(level));
+    if (btn.disabled) {
+      alert('Selesaikan level sebelumnya terlebih dahulu!');
+      return;
+    }
+    window.location.href = `level-${level}.html`;
+  }
+  function capitalizeFirst(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  // === TOAST Unlock Notification ===
+  function showUnlockToast(level) {
+    let levelName = '';
+    if (level === 'sedang') levelName = 'Level Sedang';
+    else if (level === 'sulit') levelName = 'Level Sulit';
+    else levelName = 'Level Berikutnya';
+
+    document.getElementById('toastUnlockMsg').textContent = levelName + ' berhasil dibuka!';
+    const toast = document.getElementById('toastUnlockLevel');
+    toast.style.display = 'flex';
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 10);
+    toast._toastTimeout && clearTimeout(toast._toastTimeout);
+    toast._toastTimeout = setTimeout(hideUnlockToast, 3400);
+  }
+  function hideUnlockToast() {
+    const toast = document.getElementById('toastUnlockLevel');
+    toast.classList.remove('show');
+    setTimeout(() => { toast.style.display = 'none'; }, 350);
+  }
+
+  // === SERVICE WORKER PWA ===
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then((reg) => {
+      reg.onupdatefound = () => {
+        const newSW = reg.installing;
+        newSW.onstatechange = () => {
+          if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+            tampilkanNotifikasiUpdate();
+          }
+        };
+      };
+    });
+  }
+
+  function tampilkanNotifikasiUpdate() {
+    const banner = document.createElement('div');
+    banner.innerHTML = `
+  <div class="position-fixed bottom-0 start-0 end-0 bg-dark text-white text-center p-3" style="z-index:9999;">
+    🔄 New version available!
+    <button class="btn btn-sm btn-light ms-2" onclick="location.reload()">Refresh</button>
+  </div>`;
+    document.body.appendChild(banner);
+  }
+</script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <audio id="klikSound" src="../asset/sound/mouse-click.wav" preload="auto"></audio>
 </body>
-
 </html>

@@ -7,14 +7,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <link rel="icon" href="/asset/image/kaliku.png" type="image/png"/>
+  <link rel="icon" href="../asset/image/kaliku.png" type="image/png"/>
   <meta name="theme-color" content="#fff8c2"/>
   <style>
     html, body {
       height: 100%;
       width: 100%;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
     body {
       background: linear-gradient(120deg,#fff8c2 40%,#ffe082 100%);
@@ -72,7 +71,10 @@
       font-size: 1.08em; margin-bottom: 14px; line-height: 1.7;
       word-break: break-word;
     }
-    .step-list .material-icons { color: #ffb300; font-size: 23px; min-width: 23px;}
+    .step-list .material-icons {
+      color: #ffb300; font-size: 23px; min-width: 23px;
+      vertical-align: middle;
+    }
     .tips-box {
       background: linear-gradient(95deg,#ffecb3 70%,#fffbe7 100%);
       border-radius: 12px; color: #6e3012;
@@ -80,16 +82,6 @@
       margin-bottom: 20px; border: 1.7px solid #ffe082; font-weight: 500;
       word-break: break-word;
     }
-    .table-score th, .table-score td {
-      background: #fffde8 !important; border: none; font-size: 1em;
-      padding: 8px 12px; color: #5b3d1b; vertical-align: middle;
-      word-break: break-word;
-    }
-    .table-score th {
-      color: #e99500; border-bottom: 2px solid #ffe082; width: 85px;
-      font-weight: 700; font-size: 1em; min-width: 60px;
-    }
-    .table-score .material-icons { color: #ff9800; font-size: 21px; margin-right: 2px; vertical-align: middle;}
     .btn-home {
       position: fixed;
       top: 18px;
@@ -125,94 +117,79 @@
         top: 8px; left: 8px;
         padding: 5px 10px 5px 9px;
       }
-      .table-score th, .table-score td {
-        font-size: .96em;
-        padding: 7px 5px;
-      }
-      .table-responsive { overflow-x: auto; }
-    }
-    @media (max-width: 390px) {
-      .card-cara {
-        padding-left: 2vw;
-        padding-right: 2vw;
-      }
     }
   </style>
 </head>
 <body>
-<a href="halaman-utama.html" class="btn-home" title="Kembali ke Beranda">
-  <span class="material-icons">home</span>
-</a>
-<div class="card-cara">
-  <div class="judul">
-    <span class="material-icons align-middle">psychology</span>
-    Cara Bermain
-  </div>
-  <div class="subjudul mb-3">
-    Berikut adalah petunjuk singkat agar kamu bisa bermain dan meraih skor terbaik di Game Edukasi Perkalian.
-  </div>
+  <a href="halaman-utama.html" class="btn-home" title="Kembali ke Beranda">
+    <span class="material-icons">home</span>
+  </a>
+  <div class="card-cara">
+    <div class="judul">
+      <span class="material-icons align-middle">psychology</span>
+      Cara Bermain
+    </div>
+    <div class="subjudul mb-3">
+      Berikut panduan lengkap agar kamu bisa bermain dan meraih hasil terbaik di Game Edukasi Perkalian KaliKu.
+    </div>
 
-  <div class="section-title">Langkah-Langkah Bermain</div>
-  <ul class="step-list">
-    <li><span class="material-icons">sports_esports</span> Pilih pada Mainkan Gamepada halaman utama.</li>
-    <li><span class="material-icons">category</span> Pilih level: Mudah, Sedang, Sulit, atau Latihan.</li>
-    <li><span class="material-icons">info</span> Baca petunjuk singkat yang muncul sebelum memulai setiap level.</li>
-    <li><span class="material-icons">mouse</span> Jawab soal dengan drag & drop ke kotak jawaban, atau pilih jawaban pada mode pilihan ganda.</li>
-    <li><span class="material-icons">timer</span> Setiap soal punya batas waktu, cek timer di layar.</li>
-    <li><span class="material-icons">favorite</span> Jika jawaban salah atau waktu habis, nyawa akan berkurang.</li>
-    <li><span class="material-icons">help</span> Gunakan fitur Bantuan (sekali tiap soal) jika perlu.</li>
-    <li><span class="material-icons">bar_chart</span> Skor dan sisa nyawa selalu tampil di layar.</li>
-    <li><span class="material-icons">emoji_events</span> Setelah selesai, lihat hasil skor dan skor terbaik kamu.</li>
-  </ul>
-
-  <div class="section-title">Sistem Skor & Nyawa</div>
-  <div class="table-responsive mb-2">
-    <table class="table table-score table-sm">
-      <tbody>
-        <tr>
-          <th><span class="material-icons">eco</span> Mudah</th>
-          <td>1 digit × 1 digit<br>Skor +1 tiap benar, waktu 10 detik, salah/telat: -1 nyawa</td>
-        </tr>
-        <tr>
-          <th><span class="material-icons">star_half</span> Sedang</th>
-          <td>2 digit × 1 digit<br>Skor +2 tiap benar, waktu 12 detik, salah/telat: -1 nyawa, -1 poin</td>
-        </tr>
-        <tr>
-          <th><span class="material-icons">whatshot</span> Sulit</th>
-          <td>2 digit × 2 digit<br>Skor +5 tiap benar, waktu 15 detik, salah/telat: -1 nyawa, -2 poin</td>
-        </tr>
-        <tr>
-          <th><span class="material-icons">school</span> Latihan</th>
-          <td>Soal bebas, tanpa skor atau nyawa (untuk latihan mandiri).</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section-title">Fitur Bantuan</div>
-  <div class="tips-box mb-3">
-    <ul style="padding-left:20px; margin:0;">
-      <li><span class="material-icons" style="font-size:1em;color:#039be5;vertical-align:middle;">add_alarm</span>
-        <b>Tambah Waktu:</b> Menambah 10 detik pada waktu menjawab.</li>
-      <li><span class="material-icons" style="font-size:1em;color:#4caf50;vertical-align:middle;">menu_book</span>
-        <b>Lihat Cara Hitung:</b> Menampilkan langkah penyelesaian soal.</li>
-      <li>Setiap fitur bantuan hanya dapat digunakan satu kali pada setiap soal.</li>
+    <div class="section-title">Langkah-Langkah Bermain</div>
+    <ul class="step-list">
+      <li><span class="material-icons">sports_esports</span> Dari halaman utama, pilih menu <b>Mainkan Game</b>.</li>
+      <li><span class="material-icons">category</span> Pilih level: Mudah, Sedang, Sulit, atau Mode Latihan.</li>
+      <li><span class="material-icons">menu_book</span> Baca petunjuk singkat yang muncul di awal setiap level.</li>
+      <li><span class="material-icons">touch_app</span> Jawab soal dengan drag & drop angka jawaban ke kotak jawaban.</li>
+      <li><span class="material-icons">timer</span> Setiap soal memiliki batas waktu pengerjaan (semua level).</li>
+      <li><span class="material-icons" style="color:#e53935;">favorite</span> Jika salah atau waktu habis, <b>nyawa berkurang 1</b>.</li>
+      <li><span class="material-icons">help</span> Gunakan fitur Bantuan maksimal sesuai level (1x-3x), untuk tambah waktu 10 detik atau lihat cara hitung.</li>
+      <li><span class="material-icons">check_circle</span> Status benar dan salah akan ditampilkan di kiri atas.</li>
+      <li><span class="material-icons">emoji_events</span> Setelah selesai, lihat hasil dan level berikutnya jika lolos.</li>
     </ul>
-  </div>
 
-  <div class="section-title">Tips Meraih Skor Tinggi</div>
-  <div class="tips-box">
-    <ul style="padding-left:20px; margin:0;">
-      <li>Latih kecepatan dan konsentrasi secara rutin.</li>
-      <li>Gunakan mode Latihan sebelum mencoba level yang lebih sulit.</li>
-      <li>Manfaatkan fitur bantuan dengan bijak dan hanya saat benar-benar diperlukan.</li>
-    </ul>
-  </div>
+    <div class="section-title">Sistem Nyawa Tiap Level</div>
+    <div class="table-responsive mb-2">
+      <table class="table table-score table-sm">
+        <tbody>
+          <tr>
+            <th><span class="material-icons">eco</span> Mudah</th>
+            <td>1 digit × 1 digit, waktu 10 detik, salah/telat -1 nyawa, total nyawa 5, bantuan 3x per permainan</td>
+          </tr>
+          <tr>
+            <th><span class="material-icons">star_half</span> Sedang</th>
+            <td>2 digit × 1 digit & 1 digit × 2 digit, waktu 10 detik, salah/telat -1 nyawa, total nyawa 4, bantuan 3x per permainan</td>
+          </tr>
+          <tr>
+            <th><span class="material-icons">whatshot</span> Sulit</th>
+            <td>2 digit × 2 digit, waktu 10 detik, salah/telat -1 nyawa, total nyawa 3, bantuan 3x per permainan</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div class="text-center mt-4" style="color:#e99500; font-weight:600; font-size:1.09em;">
-    Selamat bermain dan semoga kamu meraih skor terbaik!
-    <span class="material-icons align-middle" style="font-size:1.25em;color:#ffc107;">emoji_events</span>
+    <div class="section-title">Fitur Bantuan</div>
+    <div class="tips-box mb-3">
+      <ul style="padding-left:20px; margin:0;">
+        <li><span class="material-icons" style="font-size:1em;color:#039be5;vertical-align:middle;">add_alarm</span>
+          <b>Tambah Waktu:</b> Menambah 10 detik waktu menjawab soal.</li>
+        <li><span class="material-icons" style="font-size:1em;color:#4caf50;vertical-align:middle;">menu_book</span>
+          <b>Lihat Cara Hitung:</b> Menampilkan langkah penyelesaian soal menggunakan metode distributif.</li>
+        <li>Setiap bantuan hanya bisa dipakai maksimal sesuai level.</li>
+      </ul>
+    </div>
+
+    <div class="section-title">Tips Meraih Hasil Terbaik</div>
+    <div class="tips-box">
+      <ul style="padding-left:20px; margin:0;">
+        <li>Latih konsentrasi dan kecepatan menjawab secara rutin.</li>
+        <li>Manfaatkan bantuan dengan bijak, hanya saat benar-benar perlu.</li>
+      </ul>
+    </div>
+
+    <div class="text-center mt-4" style="color:#e99500; font-weight:600; font-size:1.09em;">
+      Selamat bermain dan raih hasil terbaik! 
+      <span class="material-icons align-middle" style="font-size:1.25em;color:#ffc107;">emoji_events</span>
+    </div>
   </div>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
