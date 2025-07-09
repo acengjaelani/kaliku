@@ -1,6 +1,6 @@
 {
   "name": "KaliKu",
-  "short_name": "Perkalian",
+  "short_name": "KaliKu",
   "start_url": "/html/halaman-utama.html",
   "scope": "/",
   "display": "standalone",
