@@ -402,7 +402,7 @@
     <div class="modal fade" id="modalSukses" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 shadow-lg">
-                <div class="modal-header bg-gradient-success text-white d-flex align-items-center">
+                <div class="modal-header bg-warning text-white d-flex align-items-center">
                     <span class="material-icons fs-1 me-2">celebration</span>
                     <h5 class="modal-title flex-grow-1 fw-bold">Keren!</h5>
                 </div>
@@ -503,6 +503,7 @@
         let indexSoal = 0, benarCount = 0, salahCount = 0, bantuanDigunakan = false;
         let bantuanTersisa = 3;
         let a, b, correctAnswer;
+        let level = "sulit";
 
         function updateSkorBenarSalah() {
             document.getElementById("jumlahBenar").textContent = benarCount;
@@ -546,14 +547,32 @@
         }
         function stopTimer() { clearInterval(timerInterval); }
         function penjelasanCaraHitung(a, b) {
-            const puluhanA = Math.floor(a / 10), satuanA = a % 10;
-            const puluhanB = Math.floor(b / 10), satuanB = b % 10;
-            return `💡 Cara hitung: ${a} × ${b} = 
-            (${a} × ${puluhanB * 10} + ${a} × ${satuanB}) 
-            = (${a} × ${puluhanB * 10}) + (${a} × ${satuanB}) 
-            = ${a * (puluhanB * 10)} + ${a * satuanB} 
-            = ...`;
+            if (level === "mudah") {
+                return `💡 Cara hitung: ${a} × ${b}`;
+            } else if (a >= 10 && b >= 10) {
+                // 2 digit × 2 digit
+                let pulA = Math.floor(a / 10), satA = a % 10;
+                let pulB = Math.floor(b / 10), satB = b % 10;
+                return `💡 Cara bersusun:<br>
+        - ${a} × ${b} =<br>
+        - (${pulA * 10} + ${satA}) × (${pulB * 10} + ${satB})<br>
+        - = (${pulA * 10} × ${pulB * 10}) + (${pulA * 10} × ${satB}) + (${satA} × ${pulB * 10}) + (${satA} × ${satB})<br>
+        - Jumlahkan semua hasil di atas.`;
+            } else if (a >= 10 || b >= 10) {
+                let dua = a >= 10 ? a : b;
+                let satu = a >= 10 ? b : a;
+                let puluhan = Math.floor(dua / 10);
+                let satuan = dua % 10;
+                return `💡 Cara bersusun:<br>
+        - ${dua} × ${satu} =<br>
+        - (${puluhan * 10} + ${satuan}) × ${satu}<br>
+        - = (${puluhan * 10} × ${satu}) + (${satuan} × ${satu})<br>
+        - Jumlahkan kedua hasil di atas.`;
+            } else {
+                return `💡 Cara hitung: ${a} × ${b}`;
+            }
         }
+
         function waktuHabis() {
             const penjelasan = penjelasanCaraHitung(a, b);
             document.getElementById("feedback").innerHTML = `⌛ Waktu habis!<br>${penjelasan}`;
