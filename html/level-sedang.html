@@ -24,7 +24,6 @@
             padding: 30px;
             position: relative;
         }
-
         .container {
             max-width: 600px;
             background: #ffffff;
@@ -33,7 +32,6 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             position: relative;
         }
-
         .icon-btn {
             background: none;
             border: none;
@@ -41,23 +39,19 @@
             cursor: pointer;
             color: #6e3012;
         }
-
         .icon-btn:hover {
             color: #ff9800;
         }
-
         h2 {
             font-weight: 700;
             color: #6e3012;
             margin-bottom: 20px;
         }
-
         #question {
             font-size: 22px;
             font-weight: bold;
             margin-bottom: 15px;
         }
-
         .dropzone {
             margin: 20px auto;
             padding: 15px;
@@ -69,7 +63,6 @@
             font-size: 16px;
             line-height: 40px;
         }
-
         .choices {
             display: flex;
             flex-wrap: wrap;
@@ -77,7 +70,6 @@
             margin-top: 20px;
             gap: 12px;
         }
-
         .choice {
             flex: 1 1 45%;
             min-width: 100px;
@@ -91,35 +83,24 @@
             box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
             transition: transform 0.1s;
         }
-
         .choice:active {
             transform: scale(0.95);
         }
-
         .feedback,
         .hint,
         .lives {
             font-size: 18px;
             margin-top: 15px;
         }
-
         .lives {
             color: red;
         }
-
         .timer {
             font-size: 18px;
             font-weight: 600;
             color: #333;
             margin-top: 10px;
         }
-
-        #currentBestScore {
-            font-weight: bold;
-            font-size: 16px;
-            color: #ff9800;
-        }
-
         .bg-gradient-setting,
         .bg-gradient-info,
         .bg-gradient-success,
@@ -127,50 +108,40 @@
         .bg-gradient-danger {
             border-bottom: 3px solid #ffecb3;
         }
-
         .bg-gradient-setting {
             background: linear-gradient(90deg, #6e3012 60%, #ff9800 100%);
         }
-
         .bg-gradient-info {
             background: linear-gradient(90deg, #0d8bc2 60%, #7ed6ff 100%);
             border-bottom: 3px solid #b2ebf2;
         }
-
         .bg-gradient-success {
             background: linear-gradient(90deg, #37b24d 60%, #a0e294 100%);
             border-bottom: 3px solid #c1f2b0;
         }
-
         .bg-gradient-warning {
             background: linear-gradient(90deg, #ffc107 60%, #ffecb3 100%);
             border-bottom: 3px solid #fffde7;
         }
-
         .bg-gradient-danger {
             background: linear-gradient(90deg, #c92a2a 60%, #ff6b6b 100%);
             border-bottom: 3px solid #ffeaea;
         }
-
         .modal-content {
             border-radius: 1.5rem !important;
         }
-
         .modal-header .material-icons {
             font-size: 2.2rem;
         }
-
         .modal-header {
             border-top-left-radius: 1.5rem !important;
             border-top-right-radius: 1.5rem !important;
         }
-
         .modal-footer {
             border-bottom-left-radius: 1.5rem !important;
             border-bottom-right-radius: 1.5rem !important;
             border-top: none;
         }
-
         .setting-btn {
             border: none;
             background: #fffbe7;
@@ -185,7 +156,6 @@
             outline: none !important;
             text-decoration: none !important;
         }
-
         .setting-btn:hover,
         .setting-btn:focus {
             background: #ffe0b2;
@@ -193,12 +163,10 @@
             box-shadow: 0 4px 12px rgba(200, 130, 40, 0.15);
             text-decoration: none !important;
         }
-
         .setting-btn .material-icons {
             font-size: 1.7rem;
             vertical-align: middle;
         }
-
         .status-badge {
             min-width: 52px;
             font-size: 1rem;
@@ -209,7 +177,6 @@
             box-shadow: 0 0 4px #ffe082;
             letter-spacing: 1px;
         }
-
         #musikStatus.off,
         #soundStatus.off {
             background: #bdbdbd !important;
@@ -217,20 +184,42 @@
             border-color: #e0e0e0 !important;
             box-shadow: none !important;
         }
-
         .bantuan-limit {
             color: #d17c27;
             font-weight: bold;
             font-size: 1.03em;
         }
-
         @media (max-width: 576px) {
-
             .modal-content,
             .modal-header,
             .modal-footer {
                 border-radius: 1rem !important;
             }
+        }
+        .cara-hitung-box {
+            box-shadow: 0 1px 8px #ffe0828c;
+            background: #fffbe7;
+            padding: 12px 15px 6px 15px;
+            border-radius: 12px;
+            border: 2px solid #ffe082;
+            margin-top: 7px;
+            font-size: 1.07em;
+            text-align: left;
+        }
+        .cara-hitung-box ol {
+            padding-left: 18px;
+        }
+        .cara-hitung-box .step-badge {
+            display: inline-block;
+            background: #ffe082;
+            color: #b67a19;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            font-weight: bold;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -265,12 +254,12 @@
             onclick="bukaModalBantuan()">
             <span class="material-icons">help_outline</span>
             <span>Bantuan</span>
-            <span class="bantuan-limit ms-2" id="sisaBantuan">(1x tersisa)</span>
+            <span class="bantuan-limit ms-2" id="sisaBantuan">(3x tersisa)</span>
         </button>
         <div class="choices" id="choices"></div>
         <div class="hint" id="hint"></div>
         <div class="feedback" id="feedback"></div>
-        <div class="lives" id="lives">❤️❤️❤️❤️</div>
+        <div class="lives" id="lives">❤️❤️❤️</div>
     </div>
     <!-- MODAL SETTING -->
     <div class="modal fade" id="pengaturanModal" tabindex="-1">
@@ -390,7 +379,7 @@
                 </div>
                 <div class="modal-footer bg-light py-2">
                     <div class="w-100 text-center bantuan-limit mb-2">
-                        Sisa bantuan: <span id="sisaBantuanModal">1</span> kali
+                        Sisa bantuan: <span id="sisaBantuanModal">3</span> kali
                     </div>
                     <button
                         class="btn btn-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2"
@@ -461,7 +450,31 @@
             </div>
         </div>
     </div>
-    <!-- SCRIPT -->
+
+    <!-- MODAL FEEDBACK PENJELASAN -->
+    <div class="modal fade" id="modalFeedback" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-lg" style="border:4px solid #ffe082;">
+                <div class="modal-header bg-gradient-info text-white d-flex align-items-center" id="feedbackModalHeader">
+                    <span class="material-icons fs-1 me-2" id="feedbackModalIcon">tips_and_updates</span>
+                    <h5 class="modal-title flex-grow-1 fw-bold" id="feedbackModalTitle">Penjelasan Cara Hitung</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="feedbackModalBody" style="font-size: 1.07rem;">
+                    <!-- Isi penjelasan cara hitung akan muncul di sini -->
+                </div>
+                <div class="modal-footer bg-light py-2">
+                    <button
+                        class="btn btn-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2"
+                        data-bs-dismiss="modal">
+                        <span class="material-icons">close</span>
+                        <span>Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Soal tetap level sedang
         const SOAL_TETAP = [
@@ -471,14 +484,13 @@
             [10, 7], [9, 14], [8, 12], [7, 11], [6, 13]
         ];
         const JUMLAH_BENAR_TARGET = SOAL_TETAP.length;
-
         let musikAktif = true;
         let soundAktif = true;
         let nyawa = 3, waktuSisa = 10, timerInterval;
         let indexSoal = 0, benarCount = 0, salahCount = 0, bantuanDigunakan = false;
         let bantuanTersisa = 3;
         let a, b, correctAnswer;
-        let level = "sedang";
+        let lanjutSetelahModal = null;
 
         function updateSkorBenarSalah() {
             document.getElementById("jumlahBenar").textContent = benarCount;
@@ -521,48 +533,51 @@
                 }
             }, 1000);
         }
-        function stopTimer() {
-            clearInterval(timerInterval);
-        }
+        function stopTimer() { clearInterval(timerInterval); }
 
+        // Cara hitung dengan modal, visual, distributif (bersusun)
         function penjelasanCaraHitung(a, b) {
-            if (level === "mudah") {
-                return `💡 Cara hitung: ${a} × ${b}`;
-            } else if (a >= 10 && b >= 10) {
-                // 2 digit × 2 digit
-                let pulA = Math.floor(a / 10), satA = a % 10;
-                let pulB = Math.floor(b / 10), satB = b % 10;
-                return `💡 Cara bersusun:<br>
-        - ${a} × ${b} =<br>
-        - (${pulA * 10} + ${satA}) × (${pulB * 10} + ${satB})<br>
-        - = (${pulA * 10} × ${pulB * 10}) + (${pulA * 10} × ${satB}) + (${satA} × ${pulB * 10}) + (${satA} × ${satB})<br>
-        - Jumlahkan semua hasil di atas.`;
-            } else if (a >= 10 || b >= 10) {
-                let dua = a >= 10 ? a : b;
-                let satu = a >= 10 ? b : a;
-                let puluhan = Math.floor(dua / 10);
-                let satuan = dua % 10;
-                return `💡 Cara bersusun:<br>
-        - ${dua} × ${satu} =<br>
-        - (${puluhan * 10} + ${satuan}) × ${satu}<br>
-        - = (${puluhan * 10} × ${satu}) + (${satuan} × ${satu})<br>
-        - Jumlahkan kedua hasil di atas.`;
-            } else {
-                return `💡 Cara hitung: ${a} × ${b}`;
-            }
+            let dua = a >= 10 ? a : b;
+            let satu = a >= 10 ? b : a;
+            let puluhan = Math.floor(dua / 10);
+            let satuan = dua % 10;
+            let hasilPuluhan = puluhan * 10 * satu;
+            let hasilSatuan = satuan * satu;
+            let hasil = dua * satu;
+            return `
+<div class="cara-hitung-box">
+  <div style="font-weight:bold;font-size:1.13em;color:#d17c27;">
+    📐 Cara Distributif (bersusun):
+  </div>
+  <ol>
+    <li><span class="step-badge">1</span>
+      Pecah ${dua} menjadi <b>${puluhan * 10}</b> dan <b>${satuan}</b>
+    </li>
+    <li><span class="step-badge">2</span>
+      Kalikan satu-satu:<br>
+      &nbsp;&nbsp; <b>${puluhan * 10} × ${satu} = ${hasilPuluhan}</b><br>
+      &nbsp;&nbsp; <b>${satuan} × ${satu} = ${hasilSatuan}</b>
+    </li>
+    <li><span class="step-badge">3</span>
+      Tambahkan hasilnya:<br>
+      &nbsp;&nbsp; <b>${hasilPuluhan} + ${hasilSatuan} = <span style="color:#ff9800">${hasil}</span></b>
+    </li>
+  </ol>
+  <div style="margin-top:5px;font-size:1.11em;color:#388e3c;font-weight:600;">
+    🎯 Jawaban Akhir: <b>${hasil}</b>
+  </div>
+</div>
+            `;
         }
-
 
         function waktuHabis() {
             const penjelasan = penjelasanCaraHitung(a, b);
-            document.getElementById("feedback").innerHTML = `⌛ Waktu habis!<br>${penjelasan}`;
+            showFeedbackModal("⌛ Waktu habis!", penjelasan, cekGameOverAtauLanjut);
             nyawa--;
             salahCount++;
             updateLivesDisplay();
             updateSkorBenarSalah();
-            const allChoices = document.querySelectorAll(".choice");
-            allChoices.forEach((choice) => (choice.draggable = false));
-            setTimeout(cekGameOverAtauLanjut, 3000);
+            document.querySelectorAll(".choice").forEach(choice => choice.draggable = false);
         }
         function updateLivesDisplay() {
             document.getElementById("lives").textContent = "❤️".repeat(nyawa);
@@ -632,8 +647,7 @@
                 updateSkorBenarSalah();
                 if (soundAktif) document.getElementById("salahSound").play();
                 const penjelasan = penjelasanCaraHitung(a, b);
-                document.getElementById("feedback").innerHTML = `❌ Salah.<br>${penjelasan}`;
-                setTimeout(cekGameOverAtauLanjut, 5000);
+                showFeedbackModal("❌ Salah.", penjelasan, cekGameOverAtauLanjut);
             }
             updateLivesDisplay();
         }
@@ -649,13 +663,8 @@
             document.getElementById("musikLatar").currentTime = 0;
             if (benarCount >= JUMLAH_BENAR_TARGET && nyawa > 0) {
                 const player = localStorage.getItem("game_username") || "Player";
-
-                // Unlock level Sulit
                 localStorage.setItem('game_last_unlock', 'sulit');
-
-                // Tandai progress level sedang selesai
                 localStorage.setItem(`game_progress_${player}_sedang`, JSON.stringify({ finished: true }));
-
                 if (soundAktif) document.getElementById("winSound").play();
                 new bootstrap.Modal(document.getElementById("modalSukses")).show();
             } else {
@@ -665,7 +674,7 @@
             }
         }
         function ulangiPermainan() {
-            nyawa = 4;
+            nyawa = 3;
             benarCount = 0;
             salahCount = 0;
             indexSoal = 0;
@@ -796,7 +805,15 @@
                     }
                 }, 1000);
             }
+            // Modal feedback: lanjut soal/timer setelah ditutup
+            document.getElementById('modalFeedback').addEventListener('hidden.bs.modal', function () {
+                if (typeof lanjutSetelahModal === 'function') {
+                    setTimeout(lanjutSetelahModal, 300);
+                }
+                lanjutSetelahModal = null;
+            });
         });
+
         function bukaModalBantuan() {
             if (bantuanTersisa <= 0) {
                 document.getElementById("hint").textContent = "❗ Bantuan sudah habis (maksimal 3x per game).";
@@ -805,7 +822,6 @@
             updateBantuan();
             new bootstrap.Modal(document.getElementById("modalBantuan")).show();
         }
-
         function bantuanWaktu() {
             if (bantuanTersisa <= 0) return;
             waktuSisa += 10;
@@ -814,19 +830,39 @@
             updateBantuan();
             bantuanSelesai("⌛ Waktu ditambah 10 detik");
         }
-
         function bantuanHitung() {
             if (bantuanTersisa <= 0) return;
             let hintText = penjelasanCaraHitung(a, b);
-            document.getElementById("hint").innerHTML = hintText;
+            showFeedbackModal("Bantuan: Cara Hitung", hintText, function () {
+                mulaiTimer();
+            });
             bantuanTersisa--;
             updateBantuan();
-            bantuanSelesai();
+            bootstrap.Modal.getInstance(document.getElementById("modalBantuan")).hide();
         }
-
         function bantuanSelesai(pesan = "") {
             if (pesan) document.getElementById("hint").textContent = pesan;
             bootstrap.Modal.getInstance(document.getElementById("modalBantuan")).hide();
+        }
+        function showFeedbackModal(title, contentHtml, callbackSetelahTutup = null) {
+            stopTimer();
+            document.getElementById("feedbackModalTitle").textContent = title;
+            document.getElementById("feedbackModalBody").innerHTML = contentHtml;
+            // Ganti warna header dan ikon
+            const header = document.getElementById("feedbackModalHeader");
+            const icon = document.getElementById("feedbackModalIcon");
+            if (title.includes("Salah")) {
+                header.className = "modal-header bg-gradient-danger text-white d-flex align-items-center";
+                icon.textContent = "cancel";
+            } else if (title.includes("Waktu")) {
+                header.className = "modal-header bg-gradient-warning text-white d-flex align-items-center";
+                icon.textContent = "hourglass_bottom";
+            } else {
+                header.className = "modal-header bg-gradient-info text-white d-flex align-items-center";
+                icon.textContent = "tips_and_updates";
+            }
+            lanjutSetelahModal = callbackSetelahTutup;
+            new bootstrap.Modal(document.getElementById("modalFeedback")).show();
         }
 
         // Tombol keluar
@@ -863,5 +899,4 @@
     <audio id="klikSound" src="../asset/sound/mouse-click.wav"></audio>
     <audio id="tickSound" src="../asset/sound/detik.mp3"></audio>
 </body>
-
 </html>

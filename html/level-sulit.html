@@ -226,6 +226,35 @@
                 border-radius: 1rem !important;
             }
         }
+
+        /* Tambahan visual feedback langkah hitung */
+        .cara-hitung-box {
+            box-shadow: 0 1px 8px #ffe0828c;
+            background: #fffbe7;
+            padding: 12px 15px 6px 15px;
+            border-radius: 12px;
+            border: 2px solid #ffe082;
+            margin-top: 7px;
+            font-size: 1.07em;
+        }
+
+        .cara-hitung-box ol {
+            padding-left: 18px;
+            text-align: left;
+        }
+
+        .cara-hitung-box .step-badge {
+            display: inline-block;
+            background: #ffe082;
+            color: #b67a19;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            font-weight: bold;
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -487,7 +516,30 @@
         </div>
     </div>
 
-    <!-- SCRIPT GAME -->
+    <!-- MODAL FEEDBACK PENJELASAN -->
+    <div class="modal fade" id="modalFeedback" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-lg" style="border:4px solid #ffe082;">
+                <div class="modal-header" id="feedbackModalHeader">
+                    <span class="material-icons fs-1 me-2" id="feedbackModalIcon">tips_and_updates</span>
+                    <h5 class="modal-title flex-grow-1 fw-bold" id="feedbackModalTitle">Penjelasan Cara Hitung</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="feedbackModalBody" style="font-size: 1.07rem;">
+                    <!-- Isi penjelasan cara hitung akan muncul di sini -->
+                </div>
+                <div class="modal-footer bg-light py-2">
+                    <button
+                        class="btn btn-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2"
+                        data-bs-dismiss="modal">
+                        <span class="material-icons">close</span>
+                        <span>Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const SOAL_TETAP = [
             [12, 14], [15, 16], [18, 12], [17, 13], [14, 19],
@@ -496,7 +548,6 @@
             [12, 16], [15, 19], [18, 15], [17, 14], [16, 13]
         ];
         const JUMLAH_BENAR_TARGET = SOAL_TETAP.length;
-
         let musikAktif = true;
         let soundAktif = true;
         let nyawa = 3, waktuSisa = 10, timerInterval;
@@ -504,6 +555,7 @@
         let bantuanTersisa = 3;
         let a, b, correctAnswer;
         let level = "sulit";
+        let lanjutSetelahModal = null;
 
         function updateSkorBenarSalah() {
             document.getElementById("jumlahBenar").textContent = benarCount;
@@ -546,42 +598,83 @@
             }, 1000);
         }
         function stopTimer() { clearInterval(timerInterval); }
+
+        // Cara hitung dengan box dan langkah menarik
         function penjelasanCaraHitung(a, b) {
-            if (level === "mudah") {
-                return `💡 Cara hitung: ${a} × ${b}`;
-            } else if (a >= 10 && b >= 10) {
-                // 2 digit × 2 digit
-                let pulA = Math.floor(a / 10), satA = a % 10;
-                let pulB = Math.floor(b / 10), satB = b % 10;
-                return `💡 Cara bersusun:<br>
-        - ${a} × ${b} =<br>
-        - (${pulA * 10} + ${satA}) × (${pulB * 10} + ${satB})<br>
-        - = (${pulA * 10} × ${pulB * 10}) + (${pulA * 10} × ${satB}) + (${satA} × ${pulB * 10}) + (${satA} × ${satB})<br>
-        - Jumlahkan semua hasil di atas.`;
+            const hasil = a * b;
+            if (a >= 10 && b >= 10) {
+                let satuanB = b % 10;
+                let puluhanB = Math.floor(b / 10);
+                let hasilSatuan = a * satuanB;
+                let hasilPuluhan = a * puluhanB * 10;
+                return `
+<div class="cara-hitung-box">
+  <div style="font-weight:bold;font-size:1.13em;color:#d17c27;">
+    📐 Cara Penyelesaian:
+  </div>
+  <ol>
+    <li><span class="step-badge">1</span>
+      Kalikan satuan: <b>${a} × ${satuanB}</b> = <b style="color:#388e3c">${hasilSatuan}</b>
+    </li>
+    <li><span class="step-badge">2</span>
+      Kalikan puluhan: <b>${a} × ${puluhanB}0</b> = <b style="color:#1976d2">${hasilPuluhan}</b>
+    </li>
+    <li><span class="step-badge">3</span>
+      Jumlahkan hasilnya:<br>
+      <b>${hasilSatuan}</b> + <b>${hasilPuluhan}</b> = <b style="color:#ff9800">${hasil}</b>
+    </li>
+  </ol>
+  <div style="margin-top:5px;font-size:1.11em;color:#388e3c;font-weight:600;">
+    🎯 Jawaban Akhir: <b>${hasil}</b>
+  </div>
+</div>
+                `;
             } else if (a >= 10 || b >= 10) {
                 let dua = a >= 10 ? a : b;
                 let satu = a >= 10 ? b : a;
                 let puluhan = Math.floor(dua / 10);
                 let satuan = dua % 10;
-                return `💡 Cara bersusun:<br>
-        - ${dua} × ${satu} =<br>
-        - (${puluhan * 10} + ${satuan}) × ${satu}<br>
-        - = (${puluhan * 10} × ${satu}) + (${satuan} × ${satu})<br>
-        - Jumlahkan kedua hasil di atas.`;
+                let hasilPuluhan = puluhan * 10 * satu;
+                let hasilSatuan = satuan * satu;
+                return `
+<div class="cara-hitung-box">
+  <div style="font-weight:bold;font-size:1.13em;color:#d17c27;">
+    📐 Cara Penyelesaian:
+  </div>
+  <ol>
+    <li><span class="step-badge">1</span>
+      Kalikan puluhan: <b>${puluhan * 10} × ${satu}</b> = <b style="color:#1976d2">${hasilPuluhan}</b>
+    </li>
+    <li><span class="step-badge">2</span>
+      Kalikan satuan: <b>${satuan} × ${satu}</b> = <b style="color:#388e3c">${hasilSatuan}</b>
+    </li>
+    <li><span class="step-badge">3</span>
+      Jumlahkan hasilnya:<br>
+      <b>${hasilPuluhan}</b> + <b>${hasilSatuan}</b> = <b style="color:#ff9800">${hasilPuluhan + hasilSatuan}</b>
+    </li>
+  </ol>
+  <div style="margin-top:5px;font-size:1.11em;color:#388e3c;font-weight:600;">
+    🎯 Jawaban Akhir: <b>${hasilPuluhan + hasilSatuan}</b>
+  </div>
+</div>
+                `;
             } else {
-                return `💡 Cara hitung: ${a} × ${b}`;
+                return `<div class="cara-hitung-box">
+                  <span style="font-size:1.13em;font-weight:600;color:#d17c27;">
+                  ${a} × ${b} = <b style="color:#388e3c">${hasil}</b>
+                  </span>
+                </div>`;
             }
         }
 
         function waktuHabis() {
             const penjelasan = penjelasanCaraHitung(a, b);
-            document.getElementById("feedback").innerHTML = `⌛ Waktu habis!<br>${penjelasan}`;
+            showFeedbackModal("⌛ Waktu habis!", penjelasan, cekGameOverAtauLanjut);
             nyawa--;
             salahCount++;
             updateLivesDisplay();
             updateSkorBenarSalah();
             document.querySelectorAll(".choice").forEach(choice => choice.draggable = false);
-            setTimeout(cekGameOverAtauLanjut, 3000);
         }
         function updateLivesDisplay() {
             document.getElementById("lives").textContent = "❤️".repeat(nyawa);
@@ -650,8 +743,7 @@
                 updateSkorBenarSalah();
                 if (soundAktif) document.getElementById("salahSound").play();
                 const penjelasan = penjelasanCaraHitung(a, b);
-                document.getElementById("feedback").innerHTML = `❌ Salah.<br>${penjelasan}`;
-                setTimeout(cekGameOverAtauLanjut, 5000);
+                showFeedbackModal("❌ Salah.", penjelasan, cekGameOverAtauLanjut);
             }
             updateLivesDisplay();
         }
@@ -677,7 +769,6 @@
                 new bootstrap.Modal(document.getElementById("modalGameOver")).show();
             }
         }
-
         function ulangiPermainan() {
             nyawa = 3; benarCount = 0; salahCount = 0; indexSoal = 0; bantuanTersisa = 3;
             updateSkorBenarSalah();
@@ -785,17 +876,22 @@
                     }
                 }, 1000);
             }
+            // MODAL FEEDBACK: lanjut soal/timer setelah modal ditutup
+            document.getElementById('modalFeedback').addEventListener('hidden.bs.modal', function () {
+                if (typeof lanjutSetelahModal === 'function') {
+                    setTimeout(lanjutSetelahModal, 300);
+                }
+                lanjutSetelahModal = null;
+            });
         });
         function bukaModalBantuan() {
             if (bantuanTersisa <= 0) {
                 document.getElementById("hint").textContent = "❗ Bantuan sudah habis (maksimal 3x per game).";
                 return;
             }
-            // Hilangkan pengecekan bantuanDigunakan
             updateBantuan();
             new bootstrap.Modal(document.getElementById("modalBantuan")).show();
         }
-
         function bantuanWaktu() {
             if (bantuanTersisa <= 0) return;
             waktuSisa += 10;
@@ -804,20 +900,39 @@
             updateBantuan();
             bantuanSelesai("⌛ Waktu ditambah 10 detik");
         }
-
         function bantuanHitung() {
             if (bantuanTersisa <= 0) return;
             let hintText = penjelasanCaraHitung(a, b);
-            document.getElementById("hint").innerHTML = hintText;
+            showFeedbackModal("Bantuan: Cara Hitung", hintText, function () {
+                mulaiTimer();
+            });
             bantuanTersisa--;
             updateBantuan();
-            bantuanSelesai();
+            bootstrap.Modal.getInstance(document.getElementById("modalBantuan")).hide();
         }
-
         function bantuanSelesai(pesan = "") {
-            // Hilangkan set bantuanDigunakan jadi true supaya bisa dipakai lagi
             if (pesan) document.getElementById("hint").textContent = pesan;
             bootstrap.Modal.getInstance(document.getElementById("modalBantuan")).hide();
+        }
+        function showFeedbackModal(title, contentHtml, callbackSetelahTutup = null) {
+            stopTimer();
+            document.getElementById("feedbackModalTitle").textContent = title;
+            document.getElementById("feedbackModalBody").innerHTML = contentHtml;
+            // Ganti warna header dan ikon
+            const header = document.getElementById("feedbackModalHeader");
+            const icon = document.getElementById("feedbackModalIcon");
+            if (title.includes("Salah")) {
+                header.className = "modal-header bg-gradient-danger text-white d-flex align-items-center";
+                icon.textContent = "cancel";
+            } else if (title.includes("Waktu")) {
+                header.className = "modal-header bg-gradient-warning text-white d-flex align-items-center";
+                icon.textContent = "hourglass_bottom";
+            } else {
+                header.className = "modal-header bg-gradient-info text-white d-flex align-items-center";
+                icon.textContent = "tips_and_updates";
+            }
+            lanjutSetelahModal = callbackSetelahTutup;
+            new bootstrap.Modal(document.getElementById("modalFeedback")).show();
         }
 
         // Tombol keluar

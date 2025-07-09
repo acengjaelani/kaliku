@@ -114,9 +114,36 @@
             margin-top: 10px;
         }
 
+        .bg-gradient-setting,
+        .bg-gradient-info,
+        .bg-gradient-success,
+        .bg-gradient-warning,
+        .bg-gradient-danger {
+            border-bottom: 3px solid #ffecb3;
+        }
+
         .bg-gradient-setting {
             background: linear-gradient(90deg, #6e3012 60%, #ff9800 100%);
-            border-bottom: 3px solid #ffecb3;
+        }
+
+        .bg-gradient-info {
+            background: linear-gradient(90deg, #0d8bc2 60%, #7ed6ff 100%);
+            border-bottom: 3px solid #b2ebf2;
+        }
+
+        .bg-gradient-success {
+            background: linear-gradient(90deg, #37b24d 60%, #a0e294 100%);
+            border-bottom: 3px solid #c1f2b0;
+        }
+
+        .bg-gradient-warning {
+            background: linear-gradient(90deg, #ffc107 60%, #ffecb3 100%);
+            border-bottom: 3px solid #fffde7;
+        }
+
+        .bg-gradient-danger {
+            background: linear-gradient(90deg, #c92a2a 60%, #ff6b6b 100%);
+            border-bottom: 3px solid #ffeaea;
         }
 
         .modal-content {
@@ -185,6 +212,12 @@
             box-shadow: none !important;
         }
 
+        .bantuan-limit {
+            color: #d17c27;
+            font-weight: bold;
+            font-size: 1.03em;
+        }
+
         @media (max-width: 576px) {
 
             .modal-content,
@@ -192,6 +225,34 @@
             .modal-footer {
                 border-radius: 1rem !important;
             }
+        }
+
+        .cara-hitung-box {
+            box-shadow: 0 1px 8px #ffe0828c;
+            background: #fffbe7;
+            padding: 12px 15px 6px 15px;
+            border-radius: 12px;
+            border: 2px solid #ffe082;
+            margin-top: 7px;
+            font-size: 1.07em;
+            text-align: left;
+        }
+
+        .cara-hitung-box ol {
+            padding-left: 18px;
+        }
+
+        .cara-hitung-box .step-badge {
+            display: inline-block;
+            background: #ffe082;
+            color: #b67a19;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            font-weight: bold;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -450,6 +511,31 @@
         </div>
     </div>
 
+    <!-- MODAL FEEDBACK PENJELASAN -->
+    <div class="modal fade" id="modalFeedback" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-lg" style="border:4px solid #ffe082;">
+                <div class="modal-header bg-gradient-info text-white d-flex align-items-center"
+                    id="feedbackModalHeader">
+                    <span class="material-icons fs-1 me-2" id="feedbackModalIcon">tips_and_updates</span>
+                    <h5 class="modal-title flex-grow-1 fw-bold" id="feedbackModalTitle">Penjelasan Cara Hitung</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="feedbackModalBody" style="font-size: 1.07rem;">
+                    <!-- Isi penjelasan cara hitung akan muncul di sini -->
+                </div>
+                <div class="modal-footer bg-light py-2">
+                    <button
+                        class="btn btn-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2"
+                        data-bs-dismiss="modal">
+                        <span class="material-icons">close</span>
+                        <span>Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Soal tetap level mudah (perkalian 1 digit x 1 digit)
         const SOAL_TETAP = [
@@ -463,10 +549,10 @@
         let musikAktif = true;
         let soundAktif = true;
         let nyawa = 3, waktuSisa = 10, timerInterval;
-        let indexSoal = 0, benarCount = 0, salahCount = 0, bantuanDigunakan = false;
+        let indexSoal = 0, benarCount = 0, salahCount = 0;
         let bantuanTersisa = 3;
         let a, b, correctAnswer;
-        let level = "mudah";
+        let lanjutSetelahModal = null; // untuk menahan callback setelah modal
 
         function updateSkorBenarSalah() {
             document.getElementById("jumlahBenar").textContent = benarCount;
@@ -474,20 +560,7 @@
         }
         function updateBantuan() {
             document.getElementById("sisaBantuan").textContent = `(${bantuanTersisa}x tersisa)`;
-        }
-        function toggleSound() {
-            soundAktif = !soundAktif;
-            const status = document.getElementById("soundStatus");
-            status.textContent = soundAktif ? "ON" : "OFF";
-            status.classList.toggle('off', !soundAktif);
-        }
-        function toggleMusik() {
-            musikAktif = !musikAktif;
-            const musik = document.getElementById("musikLatar");
-            if (musikAktif) musik.play(); else musik.pause();
-            const status = document.getElementById("musikStatus");
-            status.textContent = musikAktif ? "ON" : "OFF";
-            status.classList.toggle('off', !musikAktif);
+            document.getElementById("sisaBantuanModal").textContent = bantuanTersisa;
         }
         function mulaiTimer() {
             waktuSisa = 10;
@@ -498,46 +571,40 @@
                 document.getElementById("timer").textContent = `⏱️ Waktu: ${waktuSisa} detik`;
                 if (soundAktif) {
                     const tick = document.getElementById("tickSound");
-                    tick.currentTime = 0;
-                    tick.play();
+                    tick.currentTime = 0; tick.play();
                 }
-                if (waktuSisa <= 0) {
-                    clearInterval(timerInterval);
-                    waktuHabis();
-                }
+                if (waktuSisa <= 0) { clearInterval(timerInterval); waktuHabis(); }
             }, 1000);
         }
         function stopTimer() { clearInterval(timerInterval); }
         function waktuHabis() {
             const penjelasan = penjelasanCaraHitung(a, b);
-            document.getElementById("feedback").innerHTML = `⌛ Waktu habis!<br>${penjelasan}`;
+            showFeedbackModal("⌛ Waktu habis!", penjelasan, cekGameOverAtauLanjut);
             nyawa--;
             salahCount++;
             updateLivesDisplay();
             updateSkorBenarSalah();
-            const allChoices = document.querySelectorAll(".choice");
-            allChoices.forEach(choice => choice.draggable = false);
-            setTimeout(cekGameOverAtauLanjut, 3000);
+            document.querySelectorAll(".choice").forEach(choice => choice.draggable = false);
         }
         function updateLivesDisplay() {
             document.getElementById("lives").textContent = "❤️".repeat(nyawa);
         }
 
+        // Penjelasan penjumlahan berulang versi modal
         function penjelasanCaraHitung(a, b) {
-            // Tampilkan perkalian sebagai penjumlahan berulang
             let faktor, pengali;
-            // Supaya jumlah penjumlahan tidak terlalu panjang, pakai faktor yang kecil sebagai pengali
-            if (b < a) {
-                faktor = b;
-                pengali = a;
-            } else {
-                faktor = a;
-                pengali = b;
-            }
-            // Buat string penjumlahan berulang
+            if (b < a) { faktor = b; pengali = a; } else { faktor = a; pengali = b; }
             let penjumlahan = Array(faktor).fill(pengali).join(' + ');
-            return `💡 Cara hitung: ${a} × ${b} = ${penjumlahan} = ...`;
+            let hasil = a * b;
+            return `
+                <div style="font-size:1.1em;">
+                    <b>${a} × ${b} = ${penjumlahan} = <span style="color:#ff9800">${hasil}</span></b>
+                </div>
+                <div class="mt-2">Kali artinya <b>menjumlahkan bilangan yang sama berulang-ulang</b>.<br>
+                Jadi, ${a} × ${b} artinya menambah ${pengali} sebanyak ${faktor} kali.</div>
+            `;
         }
+
         function newQuestion() {
             if (nyawa <= 0 || indexSoal >= JUMLAH_BENAR_TARGET) return setTimeout(selesaikanPermainan, 200);
             [a, b] = SOAL_TETAP[indexSoal];
@@ -546,7 +613,6 @@
             document.getElementById("dropzone").textContent = "Tarik jawaban ke sini";
             document.getElementById("feedback").textContent = "";
             document.getElementById("hint").textContent = "";
-            bantuanDigunakan = false;
             generateChoices();
             stopTimer();
             mulaiTimer();
@@ -600,8 +666,7 @@
                 updateSkorBenarSalah();
                 if (soundAktif) document.getElementById("salahSound").play();
                 const penjelasan = penjelasanCaraHitung(a, b);
-                document.getElementById("feedback").innerHTML = `❌ Salah.<br>${penjelasan}`;
-                setTimeout(cekGameOverAtauLanjut, 5000);
+                showFeedbackModal("❌ Salah.", penjelasan, cekGameOverAtauLanjut);
             }
             updateLivesDisplay();
         }
@@ -617,13 +682,8 @@
             document.getElementById("musikLatar").currentTime = 0;
             if (benarCount >= JUMLAH_BENAR_TARGET && nyawa > 0) {
                 const player = localStorage.getItem("game_username") || "Player";
-
-                // Set flag unlock level sedang agar toast muncul di beranda
                 localStorage.setItem('game_last_unlock', 'sedang');
-
-                // Tandai progress level mudah selesai
                 localStorage.setItem(`game_progress_${player}_mudah`, JSON.stringify({ finished: true }));
-
                 if (soundAktif) document.getElementById("winSound").play();
                 new bootstrap.Modal(document.getElementById("modalSukses")).show();
             } else {
@@ -632,9 +692,8 @@
                 new bootstrap.Modal(document.getElementById("modalGameOver")).show();
             }
         }
-
         function ulangiPermainan() {
-            nyawa = 5;
+            nyawa = 3;
             benarCount = 0;
             salahCount = 0;
             indexSoal = 0;
@@ -649,10 +708,7 @@
                 musik.volume = 0.4;
                 musik.play();
             }
-            tampilkanCountdown(() => {
-                newQuestion();
-                mulaiTimer();
-            });
+            tampilkanCountdown(() => { newQuestion(); mulaiTimer(); });
             bootstrap.Modal.getInstance(document.getElementById("modalSukses"))?.hide();
             bootstrap.Modal.getInstance(document.getElementById("modalGameOver"))?.hide();
             bootstrap.Modal.getInstance(document.getElementById("pengaturanModal"))?.hide();
@@ -698,21 +754,18 @@
                 mulaiTimer();
                 if (musikAktif) {
                     const musik = document.getElementById("musikLatar");
-                    musik.volume = 0.4;
-                    musik.play();
+                    musik.volume = 0.4; musik.play();
                 }
             });
         }
         function playKlikSound() {
             if (soundAktif) {
                 const klikSound = document.getElementById("klikSound");
-                klikSound.currentTime = 0;
-                klikSound.play();
+                klikSound.currentTime = 0; klikSound.play();
             }
         }
         document.addEventListener("DOMContentLoaded", () => {
-            updateSkorBenarSalah();
-            updateBantuan();
+            updateSkorBenarSalah(); updateBantuan();
             new bootstrap.Modal(document.getElementById("modalPembuka")).show();
             document.getElementById("benarSound").volume = 0.8;
             document.getElementById("salahSound").volume = 0.8;
@@ -722,16 +775,12 @@
             document.querySelectorAll("button, a").forEach(el => {
                 el.addEventListener("click", playKlikSound);
             });
+            // Untuk resume timer saat tutup modal pengaturan
             const pengaturanModal = document.getElementById("pengaturanModal");
             let waktuSaatPause = 0;
-            pengaturanModal.addEventListener("show.bs.modal", () => {
-                stopTimer();
-                waktuSaatPause = waktuSisa;
-            });
+            pengaturanModal.addEventListener("show.bs.modal", () => { stopTimer(); waktuSaatPause = waktuSisa; });
             pengaturanModal.addEventListener("hidden.bs.modal", () => {
-                if (document.getElementById("dropzone").textContent === "Tarik jawaban ke sini") {
-                    lanjutkanTimer(waktuSaatPause);
-                }
+                if (document.getElementById("dropzone").textContent === "Tarik jawaban ke sini") lanjutkanTimer(waktuSaatPause);
             });
             function lanjutkanTimer(sisa) {
                 waktuSisa = sisa;
@@ -742,26 +791,27 @@
                     document.getElementById("timer").textContent = `⏱️ Waktu: ${waktuSisa} detik`;
                     if (soundAktif) {
                         const tick = document.getElementById("tickSound");
-                        tick.currentTime = 0;
-                        tick.play();
+                        tick.currentTime = 0; tick.play();
                     }
-                    if (waktuSisa <= 0) {
-                        clearInterval(timerInterval);
-                        waktuHabis();
-                    }
+                    if (waktuSisa <= 0) { clearInterval(timerInterval); waktuHabis(); }
                 }, 1000);
             }
+            // Modal feedback: lanjut soal/timer setelah ditutup
+            document.getElementById('modalFeedback').addEventListener('hidden.bs.modal', function () {
+                if (typeof lanjutSetelahModal === 'function') setTimeout(lanjutSetelahModal, 300);
+                lanjutSetelahModal = null;
+            });
         });
+
+        // ----------- Bantuan -----------
         function bukaModalBantuan() {
             if (bantuanTersisa <= 0) {
                 document.getElementById("hint").textContent = "❗ Bantuan sudah habis (maksimal 3x per game).";
                 return;
             }
-            // Hilangkan pengecekan bantuanDigunakan
             updateBantuan();
             new bootstrap.Modal(document.getElementById("modalBantuan")).show();
         }
-
         function bantuanWaktu() {
             if (bantuanTersisa <= 0) return;
             waktuSisa += 10;
@@ -770,23 +820,42 @@
             updateBantuan();
             bantuanSelesai("⌛ Waktu ditambah 10 detik");
         }
-
         function bantuanHitung() {
             if (bantuanTersisa <= 0) return;
             let hintText = penjelasanCaraHitung(a, b);
-            document.getElementById("hint").innerHTML = hintText;
+            showFeedbackModal("Bantuan: Penjumlahan Berulang", hintText);
             bantuanTersisa--;
             updateBantuan();
-            bantuanSelesai();
+            bootstrap.Modal.getInstance(document.getElementById("modalBantuan")).hide();
         }
-
         function bantuanSelesai(pesan = "") {
-            // Hilangkan set bantuanDigunakan jadi true supaya bisa dipakai lagi
             if (pesan) document.getElementById("hint").textContent = pesan;
             bootstrap.Modal.getInstance(document.getElementById("modalBantuan")).hide();
         }
 
-        // Tombol keluar
+        // ----------- Modal Feedback Penjelasan -----------
+        function showFeedbackModal(title, contentHtml, callbackSetelahTutup = null) {
+            stopTimer();
+            document.getElementById("feedbackModalTitle").textContent = title;
+            document.getElementById("feedbackModalBody").innerHTML = contentHtml;
+            // Ganti header/icon
+            const header = document.getElementById("feedbackModalHeader");
+            const icon = document.getElementById("feedbackModalIcon");
+            if (title.includes("Salah")) {
+                header.className = "modal-header bg-gradient-danger text-white d-flex align-items-center";
+                icon.textContent = "cancel";
+            } else if (title.includes("Waktu")) {
+                header.className = "modal-header bg-gradient-warning text-white d-flex align-items-center";
+                icon.textContent = "hourglass_bottom";
+            } else {
+                header.className = "modal-header bg-gradient-info text-white d-flex align-items-center";
+                icon.textContent = "tips_and_updates";
+            }
+            lanjutSetelahModal = callbackSetelahTutup;
+            new bootstrap.Modal(document.getElementById("modalFeedback")).show();
+        }
+
+        // Tombol keluar, resume, dsb tetap sama...
         window.addEventListener("popstate", function (e) {
             e.preventDefault();
             new bootstrap.Modal(document.getElementById("modalKeluar")).show();
@@ -800,10 +869,8 @@
             location.href = "halaman-utama.html";
         }
         document.addEventListener("visibilitychange", function () {
-            if (document.hidden) {
-                stopTimer();
-                if (musikAktif) document.getElementById("musikLatar").pause();
-            } else {
+            if (document.hidden) { stopTimer(); if (musikAktif) document.getElementById("musikLatar").pause(); }
+            else {
                 if (document.getElementById("dropzone").textContent === "Tarik jawaban ke sini") {
                     mulaiTimer();
                     if (musikAktif) document.getElementById("musikLatar").play();
