@@ -562,6 +562,23 @@
             document.getElementById("sisaBantuan").textContent = `(${bantuanTersisa}x tersisa)`;
             document.getElementById("sisaBantuanModal").textContent = bantuanTersisa;
         }
+
+        function toggleSound() {
+            soundAktif = !soundAktif;
+            const status = document.getElementById("soundStatus");
+            status.textContent = soundAktif ? "ON" : "OFF";
+            status.classList.toggle('off', !soundAktif);
+        }
+        function toggleMusik() {
+            musikAktif = !musikAktif;
+            const musik = document.getElementById("musikLatar");
+            if (musikAktif) musik.play();
+            else musik.pause();
+            const status = document.getElementById("musikStatus");
+            status.textContent = musikAktif ? "ON" : "OFF";
+            status.classList.toggle('off', !musikAktif);
+        }
+        
         function mulaiTimer() {
             waktuSisa = 10;
             document.getElementById("timer").textContent = `⏱️ Waktu: ${waktuSisa} detik`;
