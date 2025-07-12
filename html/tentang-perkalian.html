@@ -23,10 +23,10 @@
     .materi-card {
       background: #fff;
       border-radius: 22px;
-      max-width: 680px;
+      max-width: 720px;
       margin: 55px auto 40px auto;
       box-shadow: 0 8px 32px rgba(255, 193, 7, 0.14), 0 2px 8px rgba(0, 0, 0, 0.09);
-      padding: 44px 30px 38px 30px;
+      padding: 44px 24px 38px 24px;
       border: 2px solid #ffe08250;
       position: relative;
       animation: fadein .7s;
@@ -37,7 +37,6 @@
         opacity: 0;
         transform: translateY(25px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
@@ -64,19 +63,36 @@
     }
 
     .subjudul {
-      font-size: 1.08rem;
+      font-size: 1.09rem;
       font-weight: 500;
       color: #6e3012;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
       text-align: center;
+      background: #fffde8;
+      border-radius: 12px;
+      padding: 13px 13px 11px 13px;
+      box-shadow: 0 2px 8px #ffe08230;
+    }
+
+    .materi-section {
+      margin-bottom: 35px;
+      background: #fffbe7;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px #ffe0822a;
+      padding: 26px 20px 22px 20px;
+      position: relative;
+      transition: box-shadow .2s;
+    }
+
+    .materi-section:hover {
+      box-shadow: 0 4px 22px #ffe08242, 0 1.5px 6px #ffc10715;
     }
 
     .section-title {
       color: #6e3012;
-      font-weight: 600;
-      font-size: 1.09rem;
-      margin-top: 28px;
-      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 1.11rem;
+      margin-bottom: 12px;
       border-left: 5px solid #ffe082;
       padding-left: 13px;
       letter-spacing: .18px;
@@ -85,10 +101,10 @@
     }
 
     .materi-text {
-      font-size: 1.06em;
+      font-size: 1.07em;
       color: #533711;
-      margin-bottom: 16px;
-      line-height: 1.75;
+      margin-bottom: 0;
+      line-height: 1.8;
     }
 
     .contoh-box {
@@ -97,9 +113,21 @@
       color: #6e3012;
       font-size: 1.04em;
       padding: 15px 16px 13px 18px;
-      margin-bottom: 17px;
+      margin-bottom: 2px;
+      margin-top: 12px;
       border: 1.7px solid #ffe082;
       font-weight: 500;
+    }
+
+    .section-divider {
+      height: 18px;
+      margin: 0 0 35px 0;
+      border: none;
+      border-top: 1.5px dashed #ffe082b7;
+      width: 99%;
+      background: none;
+      display: block;
+      border-radius: 8px;
     }
 
     .tabel-sifat th,
@@ -124,21 +152,10 @@
       margin-right: 4px;
     }
 
-    .tips-hafal {
-      background: #fffbe7;
-      border-left: 5px solid #ffd54f;
-      border-radius: 0 12px 12px 0;
-      padding: 12px 16px;
-      margin-bottom: 13px;
-      font-size: 1.04em;
-      color: #755113;
-      box-shadow: 0 2px 7px rgba(255, 193, 7, 0.09);
-    }
-
     .footer-info {
       font-size: .93em;
       color: #b38c53;
-      margin-top: 22px;
+      margin-top: 30px;
       letter-spacing: .2px;
       text-align: center;
       font-weight: 500;
@@ -173,25 +190,25 @@
     @media (max-width: 720px) {
       .materi-card {
         max-width: 99vw;
-        padding: 16px 3vw 14px 3vw;
-        margin: 10px auto 24px auto;
+        padding: 10px 1vw 12px 1vw;
+        margin: 8px auto 18vw auto;
       }
-
       .judul {
-        font-size: 1.1rem;
+        font-size: 1.17rem;
       }
-
+      .subjudul {
+        font-size: 1em;
+        padding: 11px 6px 10px 6px;
+      }
       .section-title {
-        font-size: 1.0rem;
+        font-size: 1.03rem;
+        padding-left: 8px;
       }
-
-      .btn-home {
-        font-size: 15px;
-        top: 10px;
-        left: 10px;
-        padding: 5px 10px 5px 9px;
+      .materi-section {
+        padding: 15px 6px 12px 10px;
+        margin-bottom: 23px;
+        border-radius: 10px;
       }
-
       .footer-info {
         font-size: .90em;
       }
@@ -209,180 +226,227 @@
       <span class="material-icons align-middle">school</span>
       Tentang Perkalian
     </div>
-    <div class="subjudul mb-3">
-      Materi singkat & dasar tentang operasi perkalian untuk membantu pemahaman sebelum bermain.
-    </div>
 
-    <div class="section-title">Apa Itu Perkalian?</div>
-    <div class="materi-text">
-      <b>Perkalian</b> adalah operasi matematika dasar yang digunakan untuk menghitung penjumlahan berulang dari sebuah bilangan, khususnya untuk <b>bilangan cacah</b> (yaitu 0, 1, 2, 3, dan seterusnya, tanpa bilangan negatif atau pecahan).<br><br>
-      Jika kamu melihat <b>4 × 3</b>, artinya kamu menjumlahkan angka 4 sebanyak 3 kali:<br>
-      <b>4 + 4 + 4 = 12</b>.<br>
-      <b>Simbol perkalian</b> biasanya menggunakan tanda "<b>&times;</b>" atau kadang juga titik ".".<br><br>
-      <i>Catatan:</i> Pada game ini, soal-soal perkalian hanya menggunakan bilangan cacah. Jadi, semua hasil perkalian juga bilangan cacah (bukan negatif atau pecahan).
+    <div class="materi-section">
+      <div class="section-title">Definisi Perkalian</div>
+      <div class="materi-text">
+         <b>Perkalian</b> merupakan cara yang digunakan untuk memperoleh hasil penjumlahan berulang dari bilangan yang sama secara lebih cepat dan praktis.<br><br>
+    
+        <i>Contoh:</i> <b>4 × 3 = 3 + 3 + 3 + 3 = 12</b>.<br>
+        
+        <br>Dengan perkalian, kita bisa mengetahui jumlah total dengan hanya satu operasi, tanpa perlu menulis penjumlahan panjang..
+      </div>
     </div>
+    <hr class="section-divider" />
 
-    <div class="section-title">Ruang Lingkup Materi Perkalian di Game Ini</div>
-    <div class="materi-text">
-      Di game ini, kamu hanya akan belajar dan berlatih <b>perkalian bilangan cacah</b>, yaitu bilangan bulat non-negatif (0, 1, 2, 3, ...). Tidak ada soal bilangan negatif, pecahan, atau desimal. Semua contoh dan latihan difokuskan untuk memudahkan pemahaman dasar perkalian bilangan cacah.
+    <div class="materi-section">
+      <div class="section-title">Model Perkalian pada Bilangan Cacah</div>
+      <div class="materi-text">
+        Model penjumlahan berulang <b>hanya berlaku pada bilangan cacah</b>. 
+        Pada bilangan cacah (<b>0, 1, 2, 3, ...</b>), <b>a × b</b> artinya menambah angka <b>b</b> sebanyak <b>a</b> kali.<br>
+        Jika kamu melihat 5 × 2, artinya 2 + 2 + 2 + 2 + 2 = 10. Pada jenis bilangan lain seperti pecahan atau bilangan negatif, model ini tidak digunakan.
+      </div>
     </div>
+    <hr class="section-divider" />
 
-    <div class="section-title">Sifat-Sifat Perkalian</div>
-    <div class="table-responsive mb-2">
-      <table class="table tabel-sifat table-sm">
-        <tbody>
-          <tr>
-            <th><span class="material-icons">sync_alt</span>Komutatif</th>
-            <td>Urutan angka bisa ditukar: <b>a &times; b = b &times; a</b>.<br>Contoh: 2 &times; 5 = 5 &times; 2 = 10</td>
-          </tr>
-          <tr>
-            <th><span class="material-icons">all_inclusive</span>Asosiatif</th>
-            <td>Pemilihan kelompok bisa diubah: <b>(a &times; b) &times; c = a &times; (b &times; c)</b>.<br>Contoh: (2 &times; 3) &times; 4 = 2 &times; (3 &times; 4) = 24</td>
-          </tr>
-          <tr>
-            <th><span class="material-icons">add_circle_outline</span>Distributif</th>
-            <td>Berlaku untuk operasi penjumlahan: <b>a &times; (b + c) = (a &times; b) + (a &times; c)</b>.<br>Contoh: 2 &times; (3 + 4) = (2 &times; 3) + (2 &times; 4) = 14</td>
-          </tr>
-          <tr>
-            <th><span class="material-icons">exposure_plus_1</span>Sifat Identitas</th>
-            <td>Angka berapapun dikali 1 hasilnya tetap: <b>a &times; 1 = a</b></td>
-          </tr>
-          <tr>
-            <th><span class="material-icons">exposure_zero</span>Sifat Nol</th>
-            <td>Angka berapapun dikali 0 hasilnya pasti 0: <b>a &times; 0 = 0</b></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="materi-section">
+      <div class="section-title">Jenis-Jenis Bilangan dalam Perkalian</div>
+      <div class="materi-text">
+        Berikut beberapa jenis bilangan yang sering digunakan dalam operasi perkalian:
+        <ul style="margin-top:8px; margin-bottom:8px;">
+          <li><b>Bilangan Cacah</b>: 0, 1, 2, 3, ...</li>
+          <li><b>Bilangan Asli</b>: 1, 2, 3, ...</li>
+          <li><b>Bilangan Bulat</b>: ..., -3, -2, -1, 0, 1, 2, 3, ...</li>
+          <li><b>Bilangan Pecahan</b>: ½, ⅓, ¾, dsb.</li>
+          <li><b>Bilangan Desimal</b>: 2,5; 0,3; 7,85; dll.</li>
+        </ul>
+        Pada materi perkalian di game ini, kita fokus pada <b>bilangan cacah</b>.
+      </div>
     </div>
+    <hr class="section-divider" />
 
-    <div class="section-title">Contoh Perkalian dalam Kehidupan</div>
-    <div class="contoh-box mb-2">
-      <ul style="margin-bottom:0;padding-left:20px;">
-        <li><b>Menghitung harga:</b> Jika satu pensil harganya Rp2.000 dan kamu beli 5, maka 5 &times; 2.000 = Rp10.000.</li>
-        <li><b>Menghitung jumlah benda:</b> Jika ada 3 kotak, masing-masing berisi 4 buku, maka jumlah buku = 3 &times; 4 = 12 buku.</li>
-        <li><b>Menghitung waktu:</b> 1 jam = 60 menit, jadi 4 jam = 4 &times; 60 = 240 menit.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Tips Menghafal Perkalian</div>
-    <div class="tips-hafal">
-      <ul style="margin-bottom:0;padding-left:17px;">
-        <li>Latihan mengisi tabel perkalian dari 1 sampai 10 secara rutin.</li>
-        <li>Pakai trik jari (khusus perkalian 9, misal 9 &times; 4: tekuk jari ke-4 dari kiri, hasilnya puluhan & satuan).</li>
-        <li>Buat lagu/syair agar mudah diingat.</li>
-        <li>Gunakan soal cerita/ilustrasi biar tidak membosankan.</li>
-        <li>Ulangi latihan dengan aplikasi/game agar lebih seru!</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Trik Cepat Perkalian</div>
-    <div class="contoh-box mb-2">
-      <b>1. Perkalian 1 digit &times; 1 digit</b>
-      <ul style="margin-bottom:0; padding-left:20px;">
-        <li><b>Hafalkan tabel perkalian dasar 1–10.</b> Contoh: 7 &times; 8 = 56.</li>
-        <li><b>Trik jari untuk 9:</b> Untuk 9 &times; N (N = 1–10), tekuk jari ke-N dari kiri. Jumlah jari kiri jadi puluhan, kanan jadi satuan.<br>
-          <i>Contoh:</i> 9 &times; 4: Tekuk jari ke-4 &rarr; kiri 3, kanan 6 &rarr; hasilnya 36.
-        </li>
-      </ul>
-      <br>
-      <b>2. Perkalian 1 digit &times; 2 digit</b>
-      <ul style="margin-bottom:0; padding-left:20px;">
-        <li><b>Kali tiap angka satu per satu, lalu jumlahkan.</b><br>
-          <i>Contoh:</i> 7 &times; 13<br>
-          = 7 &times; (10 + 3) <br>
-          = (7 &times; 10) + (7 &times; 3) <br>
-          = 70 + 21 = <b>91</b>
-        </li>
-      </ul>
-      <br>
-      <b>3. Perkalian 2 digit &times; 2 digit (Metode Susun/Pohon)</b>
-      <ul style="margin-bottom:0; padding-left:20px;">
-        <li><b>Susun ke bawah, kalikan satu-satu, lalu jumlahkan.</b><br>
-          <i>Contoh:</i> 23 &times; 14<br>
-          <table style="font-size:1em;">
+    <div class="materi-section">
+      <div class="section-title">Sifat-Sifat Perkalian</div>
+      <div class="table-responsive mb-2">
+        <table class="table tabel-sifat table-sm">
+          <tbody>
             <tr>
-              <td>&nbsp;&nbsp;&nbsp;23</td>
+              <th><span class="material-icons">sync_alt</span>Komutatif</th>
+              <td>Urutan bilangan bisa ditukar: <b>a × b = b × a</b>.<br>Contoh: 2 × 5 = 5 × 2 = 10</td>
             </tr>
             <tr>
-              <td>×&nbsp;14</td>
+              <th><span class="material-icons">all_inclusive</span>Asosiatif</th>
+              <td>Pemilihan kelompok bisa diubah: <b>(a × b) × c = a × (b × c)</b>.<br>Contoh: (2 × 3) × 4 = 2 × (3 × 4) = 24</td>
             </tr>
             <tr>
-              <td>———–</td>
+              <th><span class="material-icons">add_circle_outline</span>Distributif</th>
+              <td>Perkalian bisa didistribusikan ke penjumlahan: <b>a × (b + c) = (a × b) + (a × c)</b>.<br>Contoh: 2 × (3 + 4) = (2 × 3) + (2 × 4) = 14</td>
             </tr>
             <tr>
-              <td>&nbsp;&nbsp;&nbsp;92 <span style="color:#bbb;">(23 × 4)</span></td>
+              <th><span class="material-icons">exposure_plus_1</span>Identitas</th>
+              <td>Bilangan apapun dikali 1 hasilnya tetap: <b>a × 1 = a</b></td>
             </tr>
             <tr>
-              <td>+230 <span style="color:#bbb;">(23 × 10, geser satu ke kiri)</span></td>
+              <th><span class="material-icons">exposure_zero</span>Sifat Nol</th>
+              <td>Bilangan apapun dikali 0 hasilnya 0: <b>a × 0 = 0</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr class="section-divider" />
+
+    <!-- Perkalian 1 digit × 2 digit -->
+    <div class="materi-section">
+      <div class="section-title">Perkalian 1 Digit × 2 Digit</div>
+      <div class="materi-text">
+        Untuk menghitung 1 digit × 2 digit, misalnya <b>7 × 13</b>, kamu bisa memecah angka dua digit tersebut menjadi puluhan dan satuan, lalu mengalikan masing-masing dengan angka 1 digit.
+        <br><br>
+        <b>Contoh:</b>
+        <ul style="margin-top:6px; margin-bottom:6px;">
+          <li>7 × 13 = 7 × (10 + 3) = (7 × 10) + (7 × 3)</li>
+          <li>7 × 10 = <b>70</b></li>
+          <li>7 × 3 = <b>21</b></li>
+          <li>Jadi, 7 × 13 = 70 + 21 = <b>91</b></li>
+        </ul>
+        <div style="margin:10px 0 2px 0; text-align:center;">
+          <span style="display:inline-block;background:#ffe6b0;padding:11px 18px 8px 18px;border-radius:13px;box-shadow:0 1.5px 7px #ffde8e80;">
+            <span style="color:#a77a14;font-size:.99em;">
+              <b>7 × 13 = (7 × 10) + (7 × 3) = 70 + 21 = 91</b>
+            </span>
+          </span>
+        </div>
+        Cara ini disebut juga <b>distributif</b> dan membuat menghitung perkalian besar terasa lebih mudah.
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Perkalian 2 digit × 2 digit distributif -->
+    <div class="materi-section">
+      <div class="section-title">Perkalian 2 Digit × 2 Digit (Distributif)</div>
+      <div class="materi-text">
+        Untuk menghitung perkalian dua digit × dua digit, misal <b>34 × 12</b>, gunakan teknik uraikan ke puluhan dan satuan, lalu kalikan semua kemungkinan, dan jumlahkan hasilnya.
+        <br><br>
+        <b>Langkah 1:</b> Uraikan masing-masing bilangan:<br>
+        34 = 30 + 4 &nbsp;&nbsp;&nbsp; 12 = 10 + 2
+        <br><br>
+        <b>Langkah 2:</b> Kalikan semua kombinasi:
+        <ul style="margin-top:6px; margin-bottom:6px;">
+          <li>30 × 10 = <b>300</b></li>
+          <li>30 × 2 = <b>60</b></li>
+          <li>4 × 10 = <b>40</b></li>
+          <li>4 × 2 = <b>8</b></li>
+        </ul>
+        <b>Langkah 3:</b> Jumlahkan semua hasil:<br>
+        300 + 60 + 40 + 8 = <b>408</b>
+        <br><br>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Perkalian 2 digit × 2 digit bersusun -->
+    <div class="materi-section">
+      <div class="section-title">Perkalian 2 Digit × 2 Digit dengan Metode Bersusun</div>
+      <div class="materi-text">
+        Metode bersusun atau “cara porogapit” adalah cara cepat mengalikan 2 digit × 2 digit dengan menuliskan susunan angka secara vertikal.<br><br>
+        <b>Contoh: 34 × 12</b><br>
+        <div style="display: flex; justify-content: center; margin:18px 0;">
+          <table style="border-collapse:collapse;font-size:1.13em;">
+            <tr>
+              <td style="border:none;"></td>
+              <td style="border:none;text-align:right;"><b>34</b></td>
             </tr>
             <tr>
-              <td>———–</td>
+              <td style="border:none;text-align:right;">×</td>
+              <td style="border:none;text-align:right;"><b>12</b></td>
             </tr>
             <tr>
-              <td>&nbsp;322 <b>&larr; Jawaban akhir</b></td>
+              <td colspan="2" style="border-bottom:2px solid #e0b343;"> </td>
+            </tr>
+            <tr>
+              <td style="color:#e19904;">2 × 34 =</td>
+              <td style="text-align:right;color:#e19904;"><b>68</b></td>
+            </tr>
+            <tr>
+              <td style="color:#e19904;">1 × 34 =</td>
+              <td style="text-align:right;color:#e19904;"><b>34</b><span style="opacity:.6;font-size:.92em;">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="border-bottom:2px solid #e0b343;"> </td>
+            </tr>
+            <tr>
+              <td style="text-align:right;"><b>Hasil</b></td>
+              <td style="text-align:right;"><b>408</b></td>
             </tr>
           </table>
-        </li>
-        <li style="margin-top:5px;"><b>Trik cepat dengan distributif:</b><br>
-          23 &times; 14 = (20 + 3) &times; (10 + 4) <br>
-          = (20 &times; 10) + (20 &times; 4) + (3 &times; 10) + (3 &times; 4) <br>
-          = 200 + 80 + 30 + 12 = <b>322</b>
-        </li>
-      </ul>
+        </div>
+        <b>Langkah-langkahnya:</b>
+        <ol style="margin-top:10px;">
+          <li>Kali angka satuan bawah (2) dengan 34 &rarr; <b>2 × 34 = 68</b></li>
+          <li>Kali angka puluhan bawah (1) dengan 34, tambahkan nol di belakang (karena puluhan) &rarr; <b>1 × 34 = 34, jadi 340</b></li>
+          <li>Jumlahkan hasilnya: <b>68 + 340 = 408</b></li>
+        </ol>
+        <div style="margin:13px 0 2px 0;color:#ad7d12;font-size:.99em;">
+          Jadi, <b>34 × 12 = 408</b>.<br>
+          <i>Catatan: Metode ini bisa juga dipakai untuk angka yang lebih besar, tinggal tambahkan baris sesuai digitnya.</i>
+        </div>
+      </div>
     </div>
 
-    <div class="section-title">Tabel Perkalian 1–10</div>
-    <div class="table-responsive mb-2">
-      <table class="table table-bordered" style="font-size:.98em; background:#fffde8;">
-        <thead style="background:#ffe082;">
-          <tr>
-            <th>&times;</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-            <th>10</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th>1</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
-          <tr><th>2</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>12</td><td>14</td><td>16</td><td>18</td><td>20</td></tr>
-          <tr><th>3</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td>24</td><td>27</td><td>30</td></tr>
-          <tr><th>4</th><td>4</td><td>8</td><td>12</td><td>16</td><td>20</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td></tr>
-          <tr><th>5</th><td>5</td><td>10</td><td>15</td><td>20</td><td>25</td><td>30</td><td>35</td><td>40</td><td>45</td><td>50</td></tr>
-          <tr><th>6</th><td>6</td><td>12</td><td>18</td><td>24</td><td>30</td><td>36</td><td>42</td><td>48</td><td>54</td><td>60</td></tr>
-          <tr><th>7</th><td>7</td><td>14</td><td>21</td><td>28</td><td>35</td><td>42</td><td>49</td><td>56</td><td>63</td><td>70</td></tr>
-          <tr><th>8</th><td>8</td><td>16</td><td>24</td><td>32</td><td>40</td><td>48</td><td>56</td><td>64</td><td>72</td><td>80</td></tr>
-          <tr><th>9</th><td>9</td><td>18</td><td>27</td><td>36</td><td>45</td><td>54</td><td>63</td><td>72</td><td>81</td><td>90</td></tr>
-          <tr><th>10</th><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td><td>60</td><td>70</td><td>80</td><td>90</td><td>100</td></tr>
-        </tbody>
-      </table>
+    <hr class="section-divider" />
+
+    <div class="materi-section">
+      <div class="section-title">Contoh Penerapan Perkalian dalam Kehidupan Sehari-hari</div>
+      <div class="materi-text">
+        Berikut contoh soal perkalian yang sering ditemui dalam kehidupan sehari-hari:
+        <div class="contoh-box mb-2">
+          <ul style="margin-bottom:0;padding-left:20px;">
+            <li><b>Menghitung benda:</b> Ada 4 kotak, masing-masing 5 buku, maka 4 × 5 = 20 buku.</li>
+            <li><b>Menghitung harga:</b> Beli 3 pensil Rp2.000, total = 3 × 2.000 = Rp6.000.</li>
+            <li><b>Menghitung waktu:</b> 3 jam, 1 jam = 60 menit, maka 3 × 60 = 180 menit.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="section-divider" />
+
+    <div class="materi-section">
+      <div class="section-title">Tabel Perkalian 1–10</div>
+      <div style="overflow-x:auto;">
+        <table style="background:#fffde8;border-radius:12px;border:1.7px solid #ffe082;box-shadow:0 1px 6px #ffe08260;font-size:1.07em;text-align:center;min-width:390px;margin-bottom:6px;">
+          <thead>
+            <tr style="background:#ffecb3;">
+              <th style="padding:6px 9px;">×</th>
+              <th style="padding:6px 9px;">1</th>
+              <th style="padding:6px 9px;">2</th>
+              <th style="padding:6px 9px;">3</th>
+              <th style="padding:6px 9px;">4</th>
+              <th style="padding:6px 9px;">5</th>
+              <th style="padding:6px 9px;">6</th>
+              <th style="padding:6px 9px;">7</th>
+              <th style="padding:6px 9px;">8</th>
+              <th style="padding:6px 9px;">9</th>
+              <th style="padding:6px 9px;">10</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th style="background:#ffecb3;">1</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+            <tr><th style="background:#ffecb3;">2</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>12</td><td>14</td><td>16</td><td>18</td><td>20</td></tr>
+            <tr><th style="background:#ffecb3;">3</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td>24</td><td>27</td><td>30</td></tr>
+            <tr><th style="background:#ffecb3;">4</th><td>4</td><td>8</td><td>12</td><td>16</td><td>20</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td></tr>
+            <tr><th style="background:#ffecb3;">5</th><td>5</td><td>10</td><td>15</td><td>20</td><td>25</td><td>30</td><td>35</td><td>40</td><td>45</td><td>50</td></tr>
+            <tr><th style="background:#ffecb3;">6</th><td>6</td><td>12</td><td>18</td><td>24</td><td>30</td><td>36</td><td>42</td><td>48</td><td>54</td><td>60</td></tr>
+            <tr><th style="background:#ffecb3;">7</th><td>7</td><td>14</td><td>21</td><td>28</td><td>35</td><td>42</td><td>49</td><td>56</td><td>63</td><td>70</td></tr>
+            <tr><th style="background:#ffecb3;">8</th><td>8</td><td>16</td><td>24</td><td>32</td><td>40</td><td>48</td><td>56</td><td>64</td><td>72</td><td>80</td></tr>
+            <tr><th style="background:#ffecb3;">9</th><td>9</td><td>18</td><td>27</td><td>36</td><td>45</td><td>54</td><td>63</td><td>72</td><td>81</td><td>90</td></tr>
+            <tr><th style="background:#ffecb3;">10</th><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td><td>60</td><td>70</td><td>80</td><td>90</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <!-- <div class="referensi-box">
-      <b>Referensi:</b>
-      <ol style="margin:7px 0 0 19px; padding-left:0;">
-        <li>
-          Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI. (2021).
-          <i>Buku Siswa Matematika Kelas IV Kurikulum Merdeka</i>.
-        </li>
-        <li>
-          Khan Academy. (2024). <i>Intro to Multiplication</i>.
-        </li>
-        <li>
-          Ruangguru. (2022). <i>Perkalian Adalah: Pengertian, Rumus, dan Contoh Soal</i>.
-        </li>
-        <li>
-          Noto, M.S. (2019). <i>Matematika untuk SD/MI Kelas IV</i>. Jakarta: Erlangga.
-        </li>
-      </ol>
-    </div>
-  </div> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
