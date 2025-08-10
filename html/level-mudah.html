@@ -254,6 +254,17 @@
             font-weight: bold;
             margin-right: 5px;
         }
+
+        select#musicGenre {
+            font-size: 14px !important;
+            padding: 0.5rem 1rem !important;
+        }
+
+        @media (max-width: 576px) {
+            select#musicGenre {
+                font-size: 13px !important;
+            }
+        }
     </style>
 </head>
 
@@ -302,38 +313,73 @@
                 <div class="modal-header bg-gradient-setting text-white d-flex align-items-center gap-2">
                     <span class="material-icons fs-1 me-2">settings</span>
                     <h5 class="modal-title flex-grow-1 fw-bold">Pengaturan</h5>
-                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body py-4 d-flex flex-column gap-3">
+
+                    <!-- Toggle Musik -->
                     <button class="setting-btn d-flex align-items-center justify-content-between"
                         onclick="toggleMusik()">
-                        <div><span class="material-icons me-2">music_note</span>Musik</div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="material-icons">music_note</span>
+                            <span>Musik</span>
+                        </div>
                         <span id="musikStatus" class="badge rounded-pill status-badge ms-2">ON</span>
                     </button>
+
+                    <!-- Toggle Sound -->
                     <button class="setting-btn d-flex align-items-center justify-content-between"
                         onclick="toggleSound()">
-                        <div><span class="material-icons me-2">volume_up</span>Sound</div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="material-icons">volume_up</span>
+                            <span>Sound</span>
+                        </div>
                         <span id="soundStatus" class="badge rounded-pill status-badge ms-2">ON</span>
                     </button>
-                    <hr />
-                    <a href="halaman-utama.html" class="setting-btn d-flex align-items-center">
-                        <span class="material-icons me-2">home</span> Beranda
+
+                    <!-- Pilihan Genre Musik -->
+                    <div class="d-flex flex-column gap-2">
+                        <label for="musicGenre" class="form-label fw-semibold d-flex align-items-center gap-2 mb-0">
+                            <span class="material-icons">library_music</span>
+                            <span>Pilih Genre Musik</span>
+                        </label>
+                        <select id="musicGenre" class="form-select rounded-3 shadow-sm" onchange="changeMusic()">
+                            <option value="musik-latar1.mp3">
+                                🎼 Klasik Santai
+                            </option>
+                            <option value="musik-latar2.mp3">
+                                🎮 Enerjik Game
+                            </option>
+                            <option value="musik-latar3.mp3">
+                                🌙 Tenang dan Fokus
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Navigasi -->
+                    <a href="halaman-utama.html" class="setting-btn d-flex align-items-center gap-2">
+                        <span class="material-icons">home</span>
+                        <span>Beranda</span>
                     </a>
-                    <button class="setting-btn d-flex align-items-center" onclick="ulangiPermainan()">
-                        <span class="material-icons me-2">restart_alt</span> Ulangi Permainan
+                    <button class="setting-btn d-flex align-items-center gap-2" onclick="ulangiPermainan()">
+                        <span class="material-icons">restart_alt</span>
+                        <span>Ulangi Permainan</span>
                     </button>
                 </div>
+
+                <!-- Footer -->
                 <div class="modal-footer bg-light py-2">
                     <button
                         class="btn btn-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2"
                         data-bs-dismiss="modal" style="font-weight:600;">
-                        <span class="material-icons">close</span> <span>Tutup</span>
+                        <span class="material-icons">close</span>
+                        <span>Tutup</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <!-- MODAL PEMBUKA -->
     <div class="modal fade" id="modalPembuka" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -578,7 +624,18 @@
             status.textContent = musikAktif ? "ON" : "OFF";
             status.classList.toggle('off', !musikAktif);
         }
-        
+
+        // Fungsi untuk mengubah musik latar
+        function changeMusic() {
+            const genreSelect = document.getElementById("musicGenre");
+            const selectedMusic = genreSelect.value;
+            const musik = document.getElementById("musikLatar");
+            musik.src = `../asset/sound/${selectedMusic}`;
+            if (musikAktif) {
+                musik.play();
+            }
+        }
+
         function mulaiTimer() {
             waktuSisa = 10;
             document.getElementById("timer").textContent = `⏱️ Waktu: ${waktuSisa} detik`;
@@ -899,7 +956,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <audio id="benarSound" src="../asset/sound/soundBenar.mp3"></audio>
     <audio id="salahSound" src="../asset/sound/soundSalah.mp3"></audio>
+    <audio id="musikLatar" src="../asset/sound/musik-latar1.mp3" loop></audio>
     <audio id="musikLatar" src="../asset/sound/musik-latar2.mp3" loop></audio>
+    <audio id="musikLatar" src="../asset/sound/musik-latar3.mp3" loop></audio>
     <audio id="selesaiSound" src="../asset/sound/gameSelesai.wav"></audio>
     <audio id="winSound" src="../asset/sound/sukses.mp3"></audio>
     <audio id="klikSound" src="../asset/sound/mouse-click.wav"></audio>
